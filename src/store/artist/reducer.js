@@ -13,7 +13,7 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_ARTIST_SUCCESS:
 			return {...state, "loading": false, "info": action.payload };
 		case FETCH_ARTIST_ERROR: 
-			return {...state, "error": action.payload };
+			return {...state, "loading": false, "error": action.payload };
 		default:
 			return state;
 	}

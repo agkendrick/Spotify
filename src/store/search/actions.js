@@ -28,7 +28,8 @@ export function searchArtist( artistName ) {
 
 		setTimeout( () => {
 			console.log("returning success payload...");
-			dispatch( searchArtistSuccess( ["drake", "joe", "snoop dogg", "scarface" ] ) );
+			dispatch( searchArtistSuccess( [{"name":"drake", "id": 1}, {"name": "joe", "id": 2}, 
+				{ "name": "snoop dogg", "id": 3}, { "name": "scarface", "id": 4} ] ) );
 			}, 5000)
 	}
 }

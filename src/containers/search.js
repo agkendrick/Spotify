@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as searchActions from '../store/search/actions';
+import * as artistActions from '../store/artist/actions';
+import SearchResults from '../components/SearchResults';
 
 class Search extends Component {
 	constructor( props ) {
@@ -9,6 +11,11 @@ class Search extends Component {
 
 	onTextChange( event ) {
 		this.props.onTextChange( event.target.value );
+	}
+
+	onResultSelect( id ) {
+		this.props.onResultSelect( id );
+		this.props.viewChange( "artistDetail" );
 	}
 
 	render() {
@@ -22,13 +29,13 @@ class Search extends Component {
 
 				<div id="search">
 
-					<input type="search" placeholder="search spotify" value={ this.props.value } onChange={ e => this.onTextChange(e) }>
+					<input type="search" placeholder="search spotify" onChange={ e => this.onTextChange(e) }>
 					</input>
 
 				</div>
 
 				<div id="results">
-					
+					<SearchResults results={ this.props.results } onClick={ this.props.onResultSelect } />
 				</div>
 
 			</div>
@@ -47,7 +54,10 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
 	return {
 		"onTextChange": text => {
-			dispatch( searchActions.searchArtist( text ) )
+			dispatch( searchActions.searchArtist( text ) );
+		},
+		"onResultSelect": id => {
+			dispatch( artistActions.fetchArtist( id ) );
 		}
 	}
 }

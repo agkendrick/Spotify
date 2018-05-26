@@ -22,12 +22,15 @@ function fetchArtistError( error ) {
 
 export function fetchArtist( artistId ) {
 	return async ( dispatch, getState ) => {
+		
+		console.log("fetchArtist id: " + artistId );
+		dispatch( fetchArtistRequest() );
+
 		let testInfo = {
-			"artistName": "test",
+			"name": "test",
 			"bio": "Blah",
 			"id": artistId
 		};
-		console.log("dispatching.....");
 		dispatch( fetchArtistSuccess( testInfo ) );
 	};
 }
