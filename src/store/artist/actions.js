@@ -23,13 +23,14 @@ function fetchArtistError( error ) {
 export function fetchArtist( artistId ) {
 	return async ( dispatch, getState ) => {
 		
-		console.log("fetchArtist id: " + artistId );
+		console.log("fetchArtist id: %o", artistId );
 		dispatch( fetchArtistRequest() );
 
 		let testInfo = {
-			"name": "test",
-			"bio": "Blah",
-			"id": artistId
+			"name": "Band of Horses",
+			"followers": 10000,
+			"id": artistId,
+			"img": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903"
 		};
 		dispatch( fetchArtistSuccess( testInfo ) );
 	};

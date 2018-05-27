@@ -9,7 +9,7 @@ export default class SearchResults extends Component {
 	render() {
 
 		const listItems = this.props.results == null ? null : this.props.results.map( ( result ) =>
-			<li class="searchResult" value={ result.id } onClick={ (e) => { this.props.onClick( result.id ) } }>{result.name}</li>
+			<li key={ result.id } className="searchResult" value={ result.id } onClick={ (e) => { this.props.onClick( result.id ) } }>{result.name}</li>
 			);
 
 		return (

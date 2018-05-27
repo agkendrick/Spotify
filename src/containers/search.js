@@ -7,6 +7,7 @@ import SearchResults from '../components/SearchResults';
 class Search extends Component {
 	constructor( props ) {
 		super( props );
+		this.onResultSelect = this.onResultSelect.bind(this);
 	}
 
 	onTextChange( event ) {
@@ -35,7 +36,7 @@ class Search extends Component {
 				</div>
 
 				<div id="results">
-					<SearchResults results={ this.props.results } onClick={ this.props.onResultSelect } />
+					<SearchResults results={ this.props.results } onClick={ this.onResultSelect } />
 				</div>
 
 			</div>
