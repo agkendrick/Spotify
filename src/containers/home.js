@@ -10,6 +10,7 @@ class Home extends Component {
 		super( props );
 		this.onArtistSelect = this.onArtistSelect.bind(this);
 		props.fetchNewReleases();
+		
 	}
 
 	onArtistSelect( id ) {
@@ -18,7 +19,6 @@ class Home extends Component {
 	}
 
 	render() {
-		console.log("new releases in home: %o", this.props.newReleases);
 		return (
 			<div id="home">
 				<NewReleases data={ this.props.newReleases } onClick={ this.onArtistSelect } />

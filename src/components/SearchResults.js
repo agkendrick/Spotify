@@ -13,9 +13,11 @@ export default class SearchResults extends Component {
 			);
 
 		return (
+		<div id="searchResults">
 			<ul>
 				{ listItems }
 			</ul>
+		</div>
 		);
 	}
 }

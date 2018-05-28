@@ -16,15 +16,12 @@ export default async() => {
 	});
 
 	const middleware = applyMiddleware(thunkMiddleware);
-	const store = createStore(reducer, middleware);
 
-	console.log( store.getState() );
+	const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware );
+	
+	// const unsubscribe = store.subscribe( () => console.log( store.getState() ) );
 
-	const unsubscribe = store.subscribe( () => console.log( store.getState() ) );
-
-	store.dispatch( actions.fetchArtist( "drake" ) );
-
-	unsubscribe();
+	// unsubscribe();
 
 	return store;
 }

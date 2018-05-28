@@ -23,7 +23,6 @@ function fetchArtistError( error ) {
 export function fetchArtist( artistId ) {
 	return async ( dispatch, getState ) => {
 		
-		console.log("fetchArtist id: %o", artistId );
 		dispatch( fetchArtistRequest() );
 
 		let testInfo = {

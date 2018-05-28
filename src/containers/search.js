@@ -2,42 +2,47 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as searchActions from '../store/search/actions';
 import * as artistActions from '../store/artist/actions';
+import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 
 class Search extends Component {
 	constructor( props ) {
 		super( props );
 		this.onResultSelect = this.onResultSelect.bind(this);
+		this.onTextChange = this.onTextChange.bind(this);
 	}
 
 	onTextChange( event ) {
-		this.props.onTextChange( event.target.value );
+		let val = event.target.value;
+		let search = this.props.searchArtist;
+
+		if ( val === "" ) {
+			return this.props.expireSearchResults();
+		}
+
+		clearTimeout( event.target.dataset.timer );
+
+		if( event.keyCode === 13) {
+			search( val );
+		} else {
+			if ( event.target.value.length !== 0 ) {
+				event.target.dataset.timer = setTimeout( () => { search( val ); }, 500 );
+			}
+		}
 	}
 
 	onResultSelect( id ) {
-		this.props.onResultSelect( id );
-		this.props.viewChange( "artistDetail" );
+		this.props.fetchArtist( id );
+		this.props.viewChange( "artist-detail" );
 	}
 
 	render() {
 
 		return (
-			<div id="wrapper">
+			<div id="searchWrapper">
 			
-				<div id="branding">
-					<span id="wikiText">Artist Search</span>	
-				</div>
-
-				<div id="search">
-
-					<input type="search" placeholder="search spotify" onChange={ e => this.onTextChange(e) }>
-					</input>
-
-				</div>
-
-				<div id="results">
-					<SearchResults results={ this.props.results } onClick={ this.onResultSelect } />
-				</div>
+				<SearchBar onKeyUp={ this.onTextChange } />
+				<SearchResults results={ this.props.results } onClick={ this.onResultSelect } />
 
 			</div>
 		);
@@ -48,17 +53,21 @@ class Search extends Component {
 function mapStateToProps( state ) {
 	return {
 		"results": state.search.results,
-		"loading": state.search.loading
+		"loading": state.search.loading,
+		"history": state.search.history
 	};
 }
 
 function mapDispatchToProps( dispatch ) {
 	return {
-		"onTextChange": text => {
+		"searchArtist": text => {
 			dispatch( searchActions.searchArtist( text ) );
 		},
-		"onResultSelect": id => {
+		"fetchArtist": id => {
 			dispatch( artistActions.fetchArtist( id ) );
+		},
+		"expireSearchResults": () => {
+			dispatch( searchActions.expireSearchResults() );
 		}
 	}
 }

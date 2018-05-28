@@ -18,7 +18,6 @@ class ArtistDetail extends Component {
 }
 
 function mapStateToProps( state ) {
-	console.log( "artistDetail state: %o", state);
 	return {
 		"name": state.artist.info.name,
 		"followers": state.artist.info.followers,

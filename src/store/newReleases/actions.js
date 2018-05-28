@@ -24,17 +24,14 @@ export function fetchNewReleases() {
 	return async (dispatch, getState ) => {
 
 		dispatch( fetchNewReleasesRequest() );
-		console.log("fetchNewReleases called ...");
 
-		setTimeout( () => {
-			console.log("returning success payload...");
-			
-			dispatch( fetchNewReleasesSuccess( [
-				{"artistName": "drake", "albumName": "Views", "id": 1}, 
-				{"artistName": "joe", "albumName": "I Wanna Know", "id": 2}, 
-				{ "artistName": "snoop dogg", "albumName": "The Doggfather", "id": 3}, 
-				{ "artistName": "scarface", "albumName": "The Fix", "id": 4} ]
-			 ) );
-		}, 5000)
+		console.log("returning newReleases success payload...");
+		
+		dispatch( fetchNewReleasesSuccess( [
+			{"artistName": "drake", "albumName": "Views", "id": 1}, 
+			{"artistName": "joe", "albumName": "I Wanna Know", "id": 2}, 
+			{ "artistName": "snoop dogg", "albumName": "The Doggfather", "id": 3}, 
+			{ "artistName": "scarface", "albumName": "The Fix", "id": 4} ]
+		 ) );
 	};
 }

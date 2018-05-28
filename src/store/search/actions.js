@@ -1,4 +1,4 @@
-import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR } from './actionTypes';
+import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, EXPIRE_SEARCH_RESULTS } from './actionTypes';
 
 function searchArtistRequest() {
 	return {
@@ -20,16 +20,21 @@ function searchArtistError( error ) {
 	};
 }
 
+export function expireSearchResults() {
+	return {
+		type: EXPIRE_SEARCH_RESULTS
+	}
+}
+
 export function searchArtist( artistName ) {
 	return async ( dispatch, getState ) => {
 
 		dispatch( searchArtistRequest() );
 		console.log("searchArtist called with input: " + artistName);
 
-		setTimeout( () => {
-			console.log("returning success payload...");
-			dispatch( searchArtistSuccess( [{"name":"drake", "id": 1}, {"name": "joe", "id": 2}, 
-				{ "name": "snoop dogg", "id": 3}, { "name": "scarface", "id": 4} ] ) );
-			}, 5000)
+		
+		console.log("returning success payload...");
+		dispatch( searchArtistSuccess( [{"name":"drake", "id": 1}, {"name": "joe", "id": 2}, 
+			{ "name": "snoop dogg", "id": 3}, { "name": "scarface", "id": 4} ] ) );
 	}
 }

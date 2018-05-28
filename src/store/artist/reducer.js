@@ -11,9 +11,7 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_ARTIST_REQUEST:
 			return {...state, "loading": true};
 		case FETCH_ARTIST_SUCCESS:
-			let newState =  {...state, "loading": false, "info": action.payload };
-			console.log("FetchArtistSuccess: %o", newState);
-			return newState;
+			return {...state, "loading": false, "info": action.payload };
 		case FETCH_ARTIST_ERROR: 
 			return {...state, "loading": false, "error": action.payload };
 		default:
