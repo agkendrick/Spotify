@@ -11,7 +11,7 @@ export default class CollapseButton extends Component {
 			<nav className="navbar navbar-default">
 				<div className="container-fluid">
 					<div className="navbar-header">
-						<button type="button" id="sidebarCollapse" className="btn btn-info navbar-btn">
+						<button type="button" id="sidebarCollapse" className="btn navbar-btn">
 							<i className="glyphicon glyphicon-align-left"></i>
 							<span>Toggle Sidebar</span>
 						</button>

@@ -13,6 +13,7 @@ function fetchArtistSuccess( artistInfo ) {
 	};
 }
 
+// eslint-disable-next-line
 function fetchArtistError( error ) {
 	return {
 		type: FETCH_ARTIST_ERROR,
@@ -29,7 +30,7 @@ export function fetchArtist( artistId ) {
 			"name": "Band of Horses",
 			"followers": 10000,
 			"id": artistId,
-			"img": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903"
+			"img": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332"
 		};
 		dispatch( fetchArtistSuccess( testInfo ) );
 	};

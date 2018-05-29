@@ -1,4 +1,4 @@
-import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, EXPIRE_SEARCH_RESULTS } from './actionTypes';
+import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_VIEW } from './actionTypes';
 
 function searchArtistRequest() {
 	return {
@@ -13,6 +13,7 @@ function searchArtistSuccess( searchResults ) {
 	};
 }
 
+// eslint-disable-next-line
 function searchArtistError( error ) {
 	return {
 		type: SEARCH_ARTIST_ERROR,
@@ -20,9 +21,23 @@ function searchArtistError( error ) {
 	};
 }
 
-export function expireSearchResults() {
+export function addToHistory( artistInfo ) {
 	return {
-		type: EXPIRE_SEARCH_RESULTS
+		type: ADD_TO_HISTORY,
+		payload: artistInfo
+	}
+}
+
+export function changeView( view ) {
+	return {
+		type: CHANGE_VIEW,
+		payload: view
+	}
+}
+
+export function clearSearchResults() {
+	return {
+		type: CLEAR_SEARCH_RESULTS
 	}
 }
 
@@ -32,6 +47,10 @@ export function searchArtist( artistName ) {
 		dispatch( searchArtistRequest() );
 		console.log("searchArtist called with input: " + artistName);
 
+		if( !artistName ) {
+			dispatch( searchArtistSuccess( null ) );
+			return;
+		}
 		
 		console.log("returning success payload...");
 		dispatch( searchArtistSuccess( [{"name":"drake", "id": 1}, {"name": "joe", "id": 2}, 

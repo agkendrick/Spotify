@@ -21,18 +21,64 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
+#search input {
+    width: 100%;
+    min-height: 100px;
+    padding: 25px;
+    font-size: 50px;
+    font-weight: 600;
+    border: none;
+    background-color: #282828;
+    color: white;
+}
+
+#search input:focus {
+    outline: none;
+    caret-color: #7386D5;
+}
+
+.viewSelect {
+    display: inline-block;
+    padding: 10px;
+    margin: 20px 10px;
+    color: #515151;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    transition: all 0.3s;
+}
+
+.viewSelect.active {
+    color: white;
+}
+
+.viewSelect:hover {
+    color: white;
+}
+
+.viewSelect.active:after {
+    content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 40px; /* Change this to whatever width you want. */
+    padding-top: 20px; /* This creates some space between the element and the border. */
+    border-bottom: 2px solid #7386D5;
+}
+/* ---------------------------------------------------
+    NAVIGATION
+----------------------------------------------------- */
+
 .wrapper {
     display: block;
 }
 
 #sidebar {
-    width: 250px;
+    width: 220px;
     position: fixed;
     top: 0;
-    left: -250px;
+    left: -220px;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: #000000;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
@@ -40,17 +86,18 @@ a, a:hover, a:focus {
 }
 
 #sidebar.active {
-    left: 0;
+    left: 0px;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background-color: black;
+    /*background-color: #1e1e1e;*/
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid hsla(0,0%,100%,.6);
 }
 
 #sidebar ul p {
@@ -60,21 +107,37 @@ a, a:hover, a:focus {
 
 #sidebar ul li {
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 1.3em;
     display: block;
+    color: #9a9a9a;
+    cursor: pointer;
 }
 #sidebar ul li:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #fff;
 }
 
-#sidebar ul li.active , li[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+#sidebar ul li.active {
+    color: #7386D5;
+}
+
+#sidebar ul li i {
+    margin-right: 3%;
 }
 
 #sidebarCollapse {
     float: left;
+    visibility: hidden;
+}
+
+#sidebarCollapse {
+    /*border: 1px solid white;*/
+    background-color: black;
+    color: white;
+}
+
+#sidebarCollapse:hover {
+    background-color: white;
+    color: black;
 }
 
 .overlay {
@@ -96,7 +159,7 @@ a, a:hover, a:focus {
     height: 35px;
     line-height: 35px;
     text-align: center;
-    background: #7386D5;
+    visibility: hidden;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -108,7 +171,11 @@ a, a:hover, a:focus {
 
 #dismiss:hover {
     background: #fff;
-    color: #7386D5;
+    color: #000;
+}
+
+#dismiss .glyphicon {
+    line-height: 35px;
 }
 
 .navbar {
@@ -130,21 +197,44 @@ a, a:hover, a:focus {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    width: 100%;
-    padding: 20px;
+    width: calc(100% - 220px);
+    background-color: #0f0f0f;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
     top: 0;
     right: 0;
 }
+#content.active {
+    width: 100%;
+}
+
+#content .navbar {
+    padding: 0px 10px;
+    margin-bottom: 0px;
+    background-color: black;
+}
+
+#content.active #sidebarCollapse {
+    visibility: visible;
+}
+
+#content img {
+    max-width: 100%;
+    height: auto;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+
 @media (max-width: 768px) {
 
     #sidebarCollapse span {
         display: none;
+    }
+
+    #dismiss {
+        visibility: visible;
     }
 }

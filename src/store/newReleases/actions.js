@@ -13,6 +13,7 @@ function fetchNewReleasesSuccess( newReleasesInfo ) {
 	};
 }
 
+// eslint-disable-next-line
 function fetchNewReleasesError( error ) {
 	return {
 		type: FETCH_NEW_RELEASES_ERROR,

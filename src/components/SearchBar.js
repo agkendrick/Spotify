@@ -8,7 +8,7 @@ export default class SearchBar extends Component {
 	render() {
 		return (
 			<div id="search">
-				<input type="search" placeholder="search spotify" onKeyUp={ e => this.props.onKeyUp(e) } />
+				<input type="search" placeholder="Start typing..." onKeyUp={ e => this.props.onKeyUp(e) } />
 			</div>
 		);
 	}

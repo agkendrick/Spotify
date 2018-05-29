@@ -11,7 +11,7 @@ class ArtistDetail extends Component {
 			<div id="artistDetail">
 				<h2>{ this.props.name }</h2>
 				<h3>Followers: { this.props.followers }</h3>
-				<img src={ this.props.img } />
+				<img src={ this.props.img } alt={ this.props.name } />
 			</div>
 		);
 	}

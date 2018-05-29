@@ -4,7 +4,6 @@ import artist from './artist/reducer';
 import newReleases from './newReleases/reducer';
 import search from './search/reducer';
 import similarArtists from './similarArtists/reducer';
-import * as actions from './artist/actions';
 
 export default async() => {
 
