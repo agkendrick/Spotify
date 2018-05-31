@@ -45,15 +45,20 @@ export function searchArtist( artistName ) {
 	return async ( dispatch, getState ) => {
 
 		dispatch( searchArtistRequest() );
-		console.log("searchArtist called with input: " + artistName);
 
 		if( !artistName ) {
 			dispatch( searchArtistSuccess( null ) );
 			return;
 		}
-		
-		console.log("returning success payload...");
-		dispatch( searchArtistSuccess( [{"name":"drake", "id": 1}, {"name": "joe", "id": 2}, 
-			{ "name": "snoop dogg", "id": 3}, { "name": "scarface", "id": 4} ] ) );
+		let img = "https://i.scdn.co/image/b414091165ea0f4172089c2fc67bb35aa37cfc55";
+
+		dispatch( searchArtistSuccess( [
+			{"name":"Drake", "id": 1, "img": img }, 
+			{"name": "Joe", "id": 2, "img": img }, 
+			{ "name": "Snoop Dogg", "id": 3, "img": img },
+			{ "name": "Q-Tip", "id": 4, "img": img },
+			{ "name": "Danny Brown", "id": 5, "img": img },
+			{ "name": "Freddie Gibbs", "id": 6, "img": img },
+			{ "name": "Scarface", "id": 7, "img": img } ] ) );
 	}
 }

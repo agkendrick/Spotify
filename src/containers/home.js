@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as newReleasesActions from '../store/newReleases/actions';
 import * as artistActions from '../store/artist/actions';
-import NewReleases from '../components/NewReleases';
+import NewReleases from '../components/views/home/NewReleases';
 
 class Home extends Component {
 	
@@ -15,12 +15,12 @@ class Home extends Component {
 
 	onArtistSelect( id ) {
 		this.props.getArtistDetails( id );
-		this.props.setView( "artist-detail" );
+		this.props.setView( "artist" );
 	}
 
 	render() {
 		return (
-			<div id="home">
+			<div id="home-view">
 				<NewReleases data={ this.props.newReleases } onClick={ this.onArtistSelect } />
 			</div>
 		);

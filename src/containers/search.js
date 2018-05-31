@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as searchActions from '../store/search/actions';
 import * as artistActions from '../store/artist/actions';
-import SearchBar from '../components/SearchBar';
-import SearchView from '../components/SearchView';
+import View from '../components/views/View';
+import SearchBar from '../components/views/search/SearchBar';
+import ArtistResults from '../components/views/search/ArtistResults';
+import SearchHistory from '../components/views/search/SearchHistory';
 
 class Search extends Component {
 	constructor( props ) {
 		super( props );
-		this.onResultSelect = this.onResultSelect.bind(this);
+		this.onArtistSelect = this.onArtistSelect.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
 		this.changeView = this.changeView.bind(this);
 		props.clearSearchResults();
@@ -19,7 +21,7 @@ class Search extends Component {
 		let val = event.target.value;
 		let search = this.props.searchArtist;
 
-		this.changeView( "results" );
+		this.changeView( "artist-results" );
 
 		clearTimeout( event.target.dataset.timer );
 
@@ -36,12 +38,12 @@ class Search extends Component {
 		}
 	}
 
-	onResultSelect( id, name ) {
+	onArtistSelect( id, name, type ) {
 		this.props.fetchArtist( id );
-		this.props.viewChange( "artist-detail" );
+		this.props.viewChange( "artist" );
 
 		if ( name ) {
-			this.props.addToHistory( { "name": name, "id": id } );
+			this.props.addToHistory( { "name": name, "id": id, "type": type } );
 		}
 	}
 
@@ -50,10 +52,18 @@ class Search extends Component {
 	}
 
 	render() {
+		const anyResults = this.props.results === null ? 0 : this.props.results.length;
+		const views = {
+			"artist-results": <ArtistResults results={ this.props.results } onClick={ this.onArtistSelect } />, 
+			"history": <SearchHistory history={ this.props.history } onItemSelect={ this.onArtistSelect } />
+		};
+
+		const active = anyResults ? [ "history", "artist-results"] : [ "history" ];
+
 		return (
-			<div id="searchWrapper">
+			<div id="search-view">
 				<SearchBar onKeyUp={ this.onTextChange } />
-				<SearchView history={ this.props.history } results={ this.props.results } onSelect={ this.onResultSelect } view={ this.props.view } onViewChange={ this.changeView } />
+				<View view={ this.props.view } views={ views } active={ active } onViewChange={ this.changeView } />
 			</div>
 		);
 	}

@@ -53,24 +53,12 @@
              $(this).addClass('active').siblings().removeClass('active');
           });
 
-          //$('#dismiss, .overlay').on('click', function () {
           $('#dismiss').on('click', function () {
               $('#sidebar, #content').toggleClass('active');
-              //$('.overlay').fadeOut();
-              //$('#sidebar').removeClass('active');
-          });
-
-          console.log($('.viewSelect'));
-          $('.viewSelect').on( 'click', 'div', function(){
-            console.log(this);
-            $(this).addClass('active').siblings().removeClass('active');
           });
 
           $('#sidebarCollapse').on('click', function () {
               $('#sidebar, #content').toggleClass('active');
-              //$('.overlay').fadeIn();
-              //$('#sidebar').addClass('active');
-              //$('.collapse.in').toggleClass('in');
           });
       });
     </script>

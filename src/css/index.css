@@ -1,10 +1,13 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "./nav.css";
+@import "./search.css";
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   background: #fafafa;
+  text-align: center;
 }
 
 p {
@@ -19,178 +22,6 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
-}
-
-#search input {
-    width: 100%;
-    min-height: 100px;
-    padding: 25px;
-    font-size: 50px;
-    font-weight: 600;
-    border: none;
-    background-color: #282828;
-    color: white;
-}
-
-#search input:focus {
-    outline: none;
-    caret-color: #7386D5;
-}
-
-.viewSelect {
-    display: inline-block;
-    padding: 10px;
-    margin: 20px 10px;
-    color: #515151;
-    letter-spacing: 1.5px;
-    font-weight: 400;
-    transition: all 0.3s;
-}
-
-.viewSelect.active {
-    color: white;
-}
-
-.viewSelect:hover {
-    color: white;
-}
-
-.viewSelect.active:after {
-    content: ""; /* This is necessary for the pseudo element to work. */ 
-    display: block; /* This will put the pseudo element on its own line. */
-    margin: 0 auto; /* This will center the border. */
-    width: 40px; /* Change this to whatever width you want. */
-    padding-top: 20px; /* This creates some space between the element and the border. */
-    border-bottom: 2px solid #7386D5;
-}
-/* ---------------------------------------------------
-    NAVIGATION
------------------------------------------------------ */
-
-.wrapper {
-    display: block;
-}
-
-#sidebar {
-    width: 220px;
-    position: fixed;
-    top: 0;
-    left: -220px;
-    height: 100vh;
-    z-index: 999;
-    background: #000000;
-    color: #fff;
-    transition: all 0.3s;
-    overflow-y: scroll;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-#sidebar.active {
-    left: 0px;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background-color: black;
-    /*background-color: #1e1e1e;*/
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid hsla(0,0%,100%,.6);
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li {
-    padding: 10px;
-    font-size: 1.3em;
-    display: block;
-    color: #9a9a9a;
-    cursor: pointer;
-}
-#sidebar ul li:hover {
-    color: #fff;
-}
-
-#sidebar ul li.active {
-    color: #7386D5;
-}
-
-#sidebar ul li i {
-    margin-right: 3%;
-}
-
-#sidebarCollapse {
-    float: left;
-    visibility: hidden;
-}
-
-#sidebarCollapse {
-    /*border: 1px solid white;*/
-    background-color: black;
-    color: white;
-}
-
-#sidebarCollapse:hover {
-    background-color: white;
-    color: black;
-}
-
-.overlay {
-    /* full screen */
-    width: 100vw;
-    height: 100vh;
-    /* transparent black */
-    background: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    /* middle layer, i.e. appears below the sidebar */
-    z-index: 998;
-}
-
-#dismiss {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    visibility: hidden;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-#dismiss:hover {
-    background: #fff;
-    color: #000;
-}
-
-#dismiss .glyphicon {
-    line-height: 35px;
-}
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
 }
 
 /* ---------------------------------------------------
@@ -224,17 +55,6 @@ a, a:hover, a:focus {
     height: auto;
 }
 
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-@media (max-width: 768px) {
-
-    #sidebarCollapse span {
-        display: none;
-    }
-
-    #dismiss {
-        visibility: visible;
-    }
+.view {
+    padding: 0 2em;
 }

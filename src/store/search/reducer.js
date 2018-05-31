@@ -18,9 +18,9 @@ export default function reducer( state = initialState, action = {} ) {
 		case SEARCH_ARTIST_ERROR: 
 			return {...state, "loading": false, "error": action.payload };
 		case CLEAR_SEARCH_RESULTS:
-			return { ...state, "results": null }
+			return { ...state, "results": null };
 		case ADD_TO_HISTORY:
-			return { ...state, "history": { ...state.history, [action.payload.id]: action.payload.name } }
+			return { ...state, "history": { ...state.history, [action.payload.id]: { "name" : action.payload.name, "type": action.payload.type } } };
 		case CHANGE_VIEW:
 			return { ...state, "view": action.payload }
 		default:

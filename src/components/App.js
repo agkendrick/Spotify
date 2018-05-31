@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import Navigation from './nav/Navigation';
+import CollapseButton from './nav/CollapseButton';
 import Search from '../containers/search';
 import Home from '../containers/home';
-import ArtistDetail from '../containers/artistDetail';
-import Navigation from './Navigation';
-import CollapseButton from './CollapseButton';
+import Artist from '../containers/artist';
 
 
 export default class App extends Component {
@@ -12,7 +11,7 @@ export default class App extends Component {
 		super( props );
 		this.views = { 
 			"home": <Home setView={ ( view ) => { this.setView( view ) } } />, 
-			"artist-detail": <ArtistDetail />,
+			"artist": <Artist />,
 			"search": <Search viewChange={ ( view ) => { this.setView( view ) } } /> 
 		};
 		this.state = { "view": "home" }

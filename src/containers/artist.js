@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ArtistDetail extends Component {
+class Artist extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	render() {
 		return (
-			<div id="artistDetail">
+			<div id="artist-view">
 				<h2>{ this.props.name }</h2>
 				<h3>Followers: { this.props.followers }</h3>
 				<img src={ this.props.img } alt={ this.props.name } />
@@ -29,4 +29,4 @@ function mapDispatchToProps( dispatch ) {
 	return {};
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( ArtistDetail );
+export default connect( mapStateToProps, mapDispatchToProps )( Artist );
