@@ -27,7 +27,7 @@ export default class App extends Component {
 		const view = this.views[this.state.view];
 
 		return (
-			<div className="App wrapper">
+			<div id="bg">
 				
 				<Navigation setView={ this.setView } />
 

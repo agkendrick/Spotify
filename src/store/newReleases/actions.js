@@ -26,13 +26,14 @@ export function fetchNewReleases() {
 
 		dispatch( fetchNewReleasesRequest() );
 
-		console.log("returning newReleases success payload...");
-		
 		dispatch( fetchNewReleasesSuccess( [
-			{"artistName": "drake", "albumName": "Views", "id": 1}, 
-			{"artistName": "joe", "albumName": "I Wanna Know", "id": 2}, 
-			{ "artistName": "snoop dogg", "albumName": "The Doggfather", "id": 3}, 
-			{ "artistName": "scarface", "albumName": "The Fix", "id": 4} ]
+			{"artistName": "Drake", "albumName": "Views", "id": 1, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"}, 
+			{"artistName": "Joe", "albumName": "I Wanna Know", "id": 2, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"}, 
+			{ "artistName": "Snoop Dogg", "albumName": "The Doggfather", "id": 3, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"}, 
+			{ "artistName": "Scarface", "albumName": "The Fix", "id": 4, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"},
+			{ "artistName": "OutKast", "albumName": "Stankonia", "id": 5, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"},
+			{ "artistName": "Roc Marciano", "albumName": "Reloaded", "id": 6, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"},
+			{ "artistName": "Kendrick Lamar", "albumName": "DAMN", "id": 7, img: "https://i.scdn.co/image/92ae5b0fe64870c09004dd2e745a4fb1bf7de39d"} ]
 		 ) );
 	};
 }

@@ -1,0 +1,1 @@
+export const CHANGE_HOME_VIEW = "CHANGE_HOME_VIEW";

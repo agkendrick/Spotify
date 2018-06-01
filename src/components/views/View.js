@@ -9,7 +9,8 @@ export default class View extends Component {
 
 		const buttonText = {
 			"artist-results": "ARTISTS",
-			"history": "RECENT SEARCHES"
+			"history": "RECENT SEARCHES",
+			"new-releases": "NEW RELEASES"
 		};
 		const views = this.props.views;
 		const view = this.props.view;

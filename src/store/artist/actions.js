@@ -27,10 +27,10 @@ export function fetchArtist( artistId ) {
 		dispatch( fetchArtistRequest() );
 
 		let testInfo = {
-			"name": "Band of Horses",
+			"name": "Future",
 			"followers": 10000,
 			"id": artistId,
-			"img": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332"
+			"img": "https://i.scdn.co/image/37fc67d0a0fa433b704faf0bd0a9bc0ce4b3261b"
 		};
 		dispatch( fetchArtistSuccess( testInfo ) );
 	};

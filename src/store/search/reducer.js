@@ -1,4 +1,4 @@
-import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_VIEW } from './actionTypes';
+import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_SEARCH_VIEW } from './actionTypes';
 
 const initialState = {
 	"loading": false,
@@ -21,7 +21,7 @@ export default function reducer( state = initialState, action = {} ) {
 			return { ...state, "results": null };
 		case ADD_TO_HISTORY:
 			return { ...state, "history": { ...state.history, [action.payload.id]: { "name" : action.payload.name, "type": action.payload.type } } };
-		case CHANGE_VIEW:
+		case CHANGE_SEARCH_VIEW:
 			return { ...state, "view": action.payload }
 		default:
 			return state;

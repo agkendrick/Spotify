@@ -1,13 +1,17 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 @import "./nav.css";
 @import "./search.css";
+@import "./home.css";
+@import "./artist.css";
 
-body {
+body, html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: #fafafa;
+  background-color: #0f0f0f;;
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 p {
@@ -29,7 +33,7 @@ a, a:hover, a:focus {
 ----------------------------------------------------- */
 #content {
     width: calc(100% - 220px);
-    background-color: #0f0f0f;
+    /*background-color: #0f0f0f;*/
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -38,12 +42,6 @@ a, a:hover, a:focus {
 }
 #content.active {
     width: 100%;
-}
-
-#content .navbar {
-    padding: 0px 10px;
-    margin-bottom: 0px;
-    background-color: black;
 }
 
 #content.active #sidebarCollapse {
@@ -58,3 +56,26 @@ a, a:hover, a:focus {
 .view {
     padding: 0 2em;
 }
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+#bg {
+    background-size: cover;
+    background-position: 50%;
+    z-index: 999999;
+    height: 100%;
+    width: 100%;
+}
+
+/*#bg:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent -30%,#181818); 
+}*/

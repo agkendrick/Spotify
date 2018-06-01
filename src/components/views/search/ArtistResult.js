@@ -13,7 +13,7 @@ export default class ArtistResult extends Component {
 		const onClick = this.props.onClick;
 
 		return (
-			<div className="artist-result link col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2" onClick={ (e) => { onClick( id, name, "Artist" ) } }>
+			<div className="result link col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2" onClick={ (e) => { onClick( id, name, "Artist" ) } }>
 				<img src={ img } alt="" />
 				<h5> { name } </h5>
 			</div>	

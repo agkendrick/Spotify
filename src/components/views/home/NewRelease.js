@@ -6,11 +6,12 @@ export default class NewRelease extends Component {
 	}
 
 	render() {
+
 		return (
-			<div onClick={ (e) => { this.props.onClick( this.props.data.id ) } } className="newRelease">
-				<span>{ this.props.data.artistName }</span>
-				<span>{ this.props.data.albumName }</span>
+			<div onClick={ (e) => { this.props.onClick( this.props.data.id ) } } className="result link col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
 				<img src={ this.props.data.img } alt={ this.props.data.albumName } />
+				<h5>{ this.props.data.albumName }</h5>
+				<span>{ this.props.data.artistName }</span>
 			</div>
 		);
 	}

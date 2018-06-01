@@ -14,6 +14,7 @@
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    min-height: 100%;
 }
 
 #sidebar.active {
@@ -22,13 +23,12 @@
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background-color: black;
     /*background-color: #1e1e1e;*/
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid hsla(0,0%,100%,.6);
+    border-bottom: .5px solid hsla(0,0%,100%,.6);
 }
 
 #sidebar ul p {
@@ -66,12 +66,9 @@
 #sidebarCollapse {
     float: left;
     visibility: hidden;
-}
-
-#sidebarCollapse {
-    /*border: 1px solid white;*/
-    background-color: black;
     color: white;
+    background-color: transparent;
+    border: 1px solid white;
 }
 
 #sidebarCollapse:hover {
@@ -90,7 +87,7 @@
     left: 0;
     display: none;
     /* middle layer, i.e. appears below the sidebar */
-    z-index: 998;
+    /*z-index: 998;*/
 }
 
 #dismiss {
@@ -123,7 +120,13 @@
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);*/
+}
+
+#content .navbar {
+    padding: 0px 10px;
+    margin-bottom: 0px;
+    background-color: transparent;
 }
 
 .navbar-btn {

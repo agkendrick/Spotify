@@ -15,7 +15,8 @@ export default class NewReleases extends Component {
 		});
 		
 		return (
-			<div className="newReleases">
+			<div id="new-releases">
+				<h1>New albums & singles</h1>
 				{ items }
 			</div>
 		);

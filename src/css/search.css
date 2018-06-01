@@ -14,20 +14,12 @@
     caret-color: #7386D5;
 }
 
-.artist-result {
-    padding: 15px;
-    line-height: 20px;
-    letter-spacing: .015em;
-    font-weight: 400;
-    color: white;
-}
-
-.artist-result:hover {
-    /*border-bottom: 1px solid #7386D5;*/
-}
-
-.artist-result img {
+#artist-results .result img {
     border-radius: 50%;
+}
+
+#artist-results h5 {
+    color: white;
 }
 
 #history {
@@ -58,5 +50,13 @@
 }
 
 .history-item h1:hover {
+    color: white;
+}
+
+.result {
+    padding-top: 15px;
+    line-height: 20px;
+    letter-spacing: .015em;
+    font-weight: 400;
     color: white;
 }

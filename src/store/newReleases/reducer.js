@@ -3,7 +3,8 @@ import { FETCH_NEW_RELEASES_REQUEST, FETCH_NEW_RELEASES_SUCCESS, FETCH_NEW_RELEA
 const initialState = {
 	"loading": false,
 	"error": null,
-	"info": null 
+	"info": null,
+	"view": "new-releases" 
 };
 
 export default function reducer( state = initialState, action = {} ) {

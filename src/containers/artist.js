@@ -6,12 +6,20 @@ class Artist extends Component {
 		super( props );
 	}
 
+	componentWillUnmount() {
+		document.getElementById("bg").style.backgroundImage = "none";
+		document.getElementById("sidebar").style.backgroundColor = "black";
+	}
+
 	render() {
+
+		document.getElementById("bg").style.backgroundImage = "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + this.props.img + ")";
+		document.getElementById("sidebar").style.backgroundColor = "rgba(0,0,0,.5)";
+
 		return (
 			<div id="artist-view">
-				<h2>{ this.props.name }</h2>
-				<h3>Followers: { this.props.followers }</h3>
-				<img src={ this.props.img } alt={ this.props.name } />
+				<h4>{ this.props.followers } MONTHLY LISTENERS</h4>
+				<h1>{ this.props.name }</h1>
 			</div>
 		);
 	}

@@ -1,4 +1,4 @@
-import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_VIEW } from './actionTypes';
+import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_SEARCH_VIEW } from './actionTypes';
 
 function searchArtistRequest() {
 	return {
@@ -30,7 +30,7 @@ export function addToHistory( artistInfo ) {
 
 export function changeView( view ) {
 	return {
-		type: CHANGE_VIEW,
+		type: CHANGE_SEARCH_VIEW,
 		payload: view
 	}
 }

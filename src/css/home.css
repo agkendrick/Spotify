@@ -1,0 +1,35 @@
+#new-releases {
+	color: white;
+}
+
+#new-releases h1 {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -.005em;
+    font-weight: 600;
+}
+
+#new-releases .result {
+	color: white;
+}
+
+#new-releases .result span {
+	display: block;
+}
+
+#new-releases h5 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: .015em;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#new-releases span {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: .015em;
+    font-weight: 200;
+    color: hsla(0,0%,100%,.6);
+}

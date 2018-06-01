@@ -4,6 +4,7 @@ import artist from './artist/reducer';
 import newReleases from './newReleases/reducer';
 import search from './search/reducer';
 import similarArtists from './similarArtists/reducer';
+import home from './home/reducer';
 
 export default async() => {
 
@@ -11,7 +12,8 @@ export default async() => {
 		artist,
 		newReleases,
 		search,
-		similarArtists
+		similarArtists,
+		home
 	});
 
 	const middleware = applyMiddleware(thunkMiddleware);
