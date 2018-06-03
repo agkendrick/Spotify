@@ -18,6 +18,10 @@
     border-radius: 50%;
 }
 
+#artist-results .result {
+    margin-bottom: 40px;
+}
+
 #artist-results h5 {
     color: white;
 }
@@ -50,13 +54,5 @@
 }
 
 .history-item h1:hover {
-    color: white;
-}
-
-.result {
-    padding-top: 15px;
-    line-height: 20px;
-    letter-spacing: .015em;
-    font-weight: 400;
     color: white;
 }

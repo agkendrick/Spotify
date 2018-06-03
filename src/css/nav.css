@@ -12,7 +12,7 @@
     background: #000000;
     color: #fff;
     transition: all 0.3s;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
     min-height: 100%;
 }
@@ -21,13 +21,9 @@
     left: 0px;
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    /*background-color: #1e1e1e;*/
-}
-
 #sidebar ul.components {
     padding: 20px 0;
+    padding-top: 0px;
     border-bottom: .5px solid hsla(0,0%,100%,.6);
 }
 
@@ -41,6 +37,10 @@
     font-size: 1.3em;
     display: block;
     color: #9a9a9a;
+}
+
+#sidebar .sidebar-header {
+    font-size: 7em;
 }
 
 .link {

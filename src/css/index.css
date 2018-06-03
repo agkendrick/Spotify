@@ -65,17 +65,32 @@ a, a:hover, a:focus {
 #bg {
     background-size: cover;
     background-position: 50%;
-    z-index: 999999;
     height: 100%;
     width: 100%;
 }
 
-/*#bg:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: linear-gradient(transparent -30%,#181818); 
-}*/
+.result {
+    padding: 15px;
+    line-height: 20px;
+    letter-spacing: .015em;
+    font-weight: 400;
+    color: white;
+    width: 16.66666667%;
+    height: 250px;
+    margin-bottom: 25px;
+    float: left;
+}
+
+#new-releases-items {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .result {
+      height: auto !important;
+      width: 100% !important;
+
+    }
+}

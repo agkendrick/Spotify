@@ -12,7 +12,6 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -23,7 +22,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Spotify Search</title>
   </head>
   <body>
     <noscript>
@@ -40,27 +39,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-          $("#sidebar").mCustomScrollbar({
-              theme: "minimal"
-          });
-
-          $('.list-unstyled').on('click','li', function(){
-             $(this).addClass('active').siblings().removeClass('active');
-          });
-
-          $('#dismiss').on('click', function () {
-              $('#sidebar, #content').toggleClass('active');
-          });
-
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar, #content').toggleClass('active');
-          });
-      });
-    </script>
   </body>
 </html>

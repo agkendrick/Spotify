@@ -13,8 +13,7 @@ export default function reducer( state = initialState, action = {} ) {
 		case SEARCH_ARTIST_REQUEST:
 			return {...state, "loading": true};
 		case SEARCH_ARTIST_SUCCESS:
-			let info = action.payload == null ? null : action.payload
-			return {...state, "loading": false, "results": info };
+			return {...state, "loading": false, "results": extractSearchResults( action.payload ) };
 		case SEARCH_ARTIST_ERROR: 
 			return {...state, "loading": false, "error": action.payload };
 		case CLEAR_SEARCH_RESULTS:
@@ -26,4 +25,25 @@ export default function reducer( state = initialState, action = {} ) {
 		default:
 			return state;
 	}
+}
+
+
+function extractSearchResults( response ) {
+	const items = response.artists.items;
+	const extracted = [];
+
+	items.forEach( function( item ) {
+		if( item.images.length < 1 ) {
+			return;	
+		};
+		const release = {
+			"id": item.id,
+			"img": item.images[0].url,
+			"name": item.name
+		};
+
+		extracted.push( release );
+	} );
+
+	return extracted;
 }

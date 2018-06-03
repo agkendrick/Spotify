@@ -1,4 +1,5 @@
 import { SEARCH_ARTIST_REQUEST, SEARCH_ARTIST_SUCCESS, SEARCH_ARTIST_ERROR, CLEAR_SEARCH_RESULTS, ADD_TO_HISTORY, CHANGE_SEARCH_VIEW } from './actionTypes';
+import * as searchService from '../../services/spotify/search';
 
 function searchArtistRequest() {
 	return {
@@ -46,19 +47,15 @@ export function searchArtist( artistName ) {
 
 		dispatch( searchArtistRequest() );
 
-		if( !artistName ) {
-			dispatch( searchArtistSuccess( null ) );
-			return;
-		}
-		let img = "https://i.scdn.co/image/b414091165ea0f4172089c2fc67bb35aa37cfc55";
+		const token = getState().auth.token;
 
-		dispatch( searchArtistSuccess( [
-			{"name":"Drake", "id": 1, "img": img }, 
-			{"name": "Joe", "id": 2, "img": img }, 
-			{ "name": "Snoop Dogg", "id": 3, "img": img },
-			{ "name": "Q-Tip", "id": 4, "img": img },
-			{ "name": "Danny Brown", "id": 5, "img": img },
-			{ "name": "Freddie Gibbs", "id": 6, "img": img },
-			{ "name": "Scarface", "id": 7, "img": img } ] ) );
+		if ( !token ) return dispatch( searchArtistError( "No auth token" ) );
+
+		const response = await searchService.searchArtist( artistName, token );
+
+		if ( !response.success ) return dispatch( searchArtistError( response.message ) );
+		
+		dispatch( searchArtistSuccess( response.body ) );
+
 	}
 }

@@ -3,8 +3,8 @@ import thunkMiddleware from 'redux-thunk';
 import artist from './artist/reducer';
 import newReleases from './newReleases/reducer';
 import search from './search/reducer';
-import similarArtists from './similarArtists/reducer';
 import home from './home/reducer';
+import auth from './auth/reducer';
 
 export default async() => {
 
@@ -12,17 +12,13 @@ export default async() => {
 		artist,
 		newReleases,
 		search,
-		similarArtists,
-		home
+		home,
+		auth
 	});
 
 	const middleware = applyMiddleware(thunkMiddleware);
 
 	const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware );
-	
-	// const unsubscribe = store.subscribe( () => console.log( store.getState() ) );
-
-	// unsubscribe();
 
 	return store;
 }

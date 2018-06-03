@@ -10,7 +10,7 @@ import SearchHistory from '../components/views/search/SearchHistory';
 class Search extends Component {
 	constructor( props ) {
 		super( props );
-		this.onArtistSelect = this.onArtistSelect.bind(this);
+		this.onItemSelect = this.onItemSelect.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
 		this.changeView = this.changeView.bind(this);
 		props.clearSearchResults();
@@ -38,13 +38,13 @@ class Search extends Component {
 		}
 	}
 
-	onArtistSelect( id, name, type ) {
-		this.props.fetchArtist( id );
-		this.props.viewChange( "artist" );
-
-		if ( name ) {
-			this.props.addToHistory( { "name": name, "id": id, "type": type } );
+	onItemSelect( id, name, type ) {
+		if( type === "artist" ) {
+			this.props.fetchArtist( id );
 		}
+
+		this.props.addToHistory( { "name": name, "id": id, "type": type } );
+		this.props.viewChange( type );
 	}
 
 	changeView( view ) {
@@ -54,8 +54,8 @@ class Search extends Component {
 	render() {
 		const anyResults = this.props.results === null ? 0 : this.props.results.length;
 		const views = {
-			"artist-results": <ArtistResults results={ this.props.results } onClick={ this.onArtistSelect } />, 
-			"history": <SearchHistory history={ this.props.history } onItemSelect={ this.onArtistSelect } />
+			"artist-results": <ArtistResults results={ this.props.results } onClick={ this.onItemSelect } />, 
+			"history": <SearchHistory history={ this.props.history } onClick={ this.onItemSelect } />
 		};
 
 		const active = anyResults ? [ "history", "artist-results"] : [ "history" ];

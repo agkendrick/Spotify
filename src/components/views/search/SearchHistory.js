@@ -12,7 +12,7 @@ export default class SearchHistory extends Component {
 		const history = this.props.history;
 
 		const items = keys.map( ( key ) => {
-			return <HistoryItem key={ key } name={ history[key].name } type={ history[key].type } id={ key } onClick={ this.props.onItemSelect } />
+			return <HistoryItem key={ key } name={ history[key].name } type={ history[key].type } id={ key } onClick={ this.props.onClick } />
 		});
 
 		return (

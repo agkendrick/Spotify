@@ -14,7 +14,7 @@ export default class Navigation extends Component {
 	            </div>
 
 	            <div className="sidebar-header">
-	                <h3>Collapsible Sidebar</h3>
+	                <i className="fa fa-spotify fa-5" aria-hidden="true"></i>
 	            </div>
 
 	            <ul className="list-unstyled components">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArtistResult from './ArtistResult';
+import Tile from '../Tile';
 
 export default class ArtistResults extends Component {
 
@@ -8,9 +8,9 @@ export default class ArtistResults extends Component {
 	}
 
 	render() {
-		
+
 		const listItems = this.props.results == null ? null : this.props.results.map( ( result ) =>
-			<ArtistResult key={ result.id } name={ result.name } artistId={ result.id } img={ result.img } onClick={ this.props.onClick } />
+			<Tile key={ result.id } name={ result.name } id={ result.id } img={ result.img } type={ "artist" } onClick={ this.props.onClick } />
 			);
 
 		return (

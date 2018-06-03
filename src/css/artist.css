@@ -1,3 +1,53 @@
 #artist-view {
 	color: white;
 }
+
+#artist-view h4 {
+	font-size: 11px;
+    line-height: 16px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    padding-top: 50px;
+    color: hsla(0,0%,100%,.6);
+    display: block;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#artist-view h1 {
+    font-size: 70px;
+    line-height: 82px;
+    letter-spacing: -.005em;
+    font-weight: 600;
+    margin-top: 0px;
+}
+
+#artist-view .view {
+    margin-top: 120px;
+}
+
+#artist-view h2 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: .015em;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+#bio {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: .015em;
+    font-weight: 200;
+    padding: 0px 20px;
+}
+
+#related-artists img {
+    border-radius: 50%;
+}
+
+#related-artists .result {
+    margin-bottom: 40px;
+}

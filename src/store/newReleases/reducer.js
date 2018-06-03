@@ -3,8 +3,7 @@ import { FETCH_NEW_RELEASES_REQUEST, FETCH_NEW_RELEASES_SUCCESS, FETCH_NEW_RELEA
 const initialState = {
 	"loading": false,
 	"error": null,
-	"info": null,
-	"view": "new-releases" 
+	"items": null 
 };
 
 export default function reducer( state = initialState, action = {} ) {
@@ -12,10 +11,30 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_NEW_RELEASES_REQUEST:
 			return {...state, "loading": true};
 		case FETCH_NEW_RELEASES_SUCCESS:
-			return {...state, "loading": false, "info": action.payload };
+			return {...state, "loading": false, "items": extractNewReleases( action.items ) };
 		case FETCH_NEW_RELEASES_ERROR: 
 			return {...state, "error": action.payload };
 		default:
 			return state;
 	}
+}
+
+function extractNewReleases( response ) {
+	const items = response.albums.items;
+	const extracted = [];
+
+	items.forEach( function( item ) {
+		const release = {
+			"id": item.artists[0].id,
+			"img": item.images[0].url,
+			"name": {
+				"artist": item.artists[0].name,
+				"album": item.name
+			}
+		};
+
+		extracted.push( release );
+	} );
+
+	return extracted;
 }

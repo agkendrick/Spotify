@@ -10,20 +10,22 @@ class Home extends Component {
 	
 	constructor( props ) {
 		super( props );
-		this.onArtistSelect = this.onArtistSelect.bind(this);
+		this.onItemSelect = this.onItemSelect.bind(this);
 		props.fetchNewReleases();
 		
 	}
 
-	onArtistSelect( id ) {
-		this.props.getArtistDetails( id );
+	onItemSelect( id, name, type ) {
+		if ( type === "artist" || "album" ) {
+			this.props.getArtistDetails( id );
+		}
 		this.props.setView( "artist" );
 	}
 
 	render() {
 
 		const views = {
-			"new-releases": <NewReleases data={ this.props.newReleases } onClick={ this.onArtistSelect } />
+			"new-releases": <NewReleases data={ this.props.newReleases } onClick={ this.onItemSelect } />
 		};
 		const active = Object.keys( views );
 
@@ -37,7 +39,7 @@ class Home extends Component {
 
 function mapStateToProps( state ) {
 	return {
-		"newReleases": state.newReleases.info,
+		"newReleases": state.newReleases.items,
 		"view": state.home.view
 	};
 }
