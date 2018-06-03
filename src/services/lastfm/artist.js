@@ -3,7 +3,7 @@ import request from 'request-promise';
 export function getArtist( name ) {
 
 	const config = {
-		"url": "http://ws.audioscrobbler.com/2.0/",
+		"url": "https://ws.audioscrobbler.com/2.0/",
 		"method": "GET",
 		json: true,
 		qs: {

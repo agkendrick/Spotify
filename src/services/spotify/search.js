@@ -1,7 +1,7 @@
 import request from 'request-promise';
 
 export function searchArtist( artistName, token ) {
-
+	
 	const config = {
 		"url": "https://api.spotify.com/v1/search",
 		"method": "GET",
@@ -11,7 +11,7 @@ export function searchArtist( artistName, token ) {
 		json: true,
 		qs: {
 			"type": "artist",
-			"q": encodeURI( artistName )
+			"q": decodeURIComponent( artistName )
 		}
 	};
 

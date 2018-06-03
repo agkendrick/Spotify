@@ -2,6 +2,8 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "home": "https://agkendrick.github.io/Spotify",
+  "homepage": "https://agkendrick.github.io/Spotify",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
@@ -54,7 +56,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -100,5 +103,8 @@
     "rules": {
       "no-useless-constructor": "off"
     }
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
   }
 }
