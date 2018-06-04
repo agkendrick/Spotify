@@ -18,8 +18,7 @@ class Search extends Component {
 	}
 
 	onTextChange( event ) {
-		let val = encodeURIComponent( event.target.value );
-
+		let val = event.target.value;
 		let search = this.props.searchArtist;
 
 		this.changeView( "artist-results" );

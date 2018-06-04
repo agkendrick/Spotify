@@ -26,7 +26,6 @@ storePromise()
 		          });
 
 		          $('#dismiss').on('click', function () {
-		            console.log("clicking..");
 		              $('#sidebar, #content').toggleClass('active');
 		          });
 
