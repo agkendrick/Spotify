@@ -14,12 +14,11 @@ export default class View extends Component {
 			"about": "ABOUT",
 			"related": "RELATED ARTISTS"
 		};
-		const views = this.props.views;
-		const view = this.props.view;
-		const active = this.props.active;
 
-		const navItems = this.props.views === null ? null : active.map( ( key ) => {
-			return <div key={ key } className={ "view-selector " + ( view === key ? "active" : "" ) } onClick={ ( e ) => { this.props.onViewChange( key ) } }> { buttonText[key] } </div>
+		const { views, view, active, onViewChange } = this.props;
+
+		const navItems = views === null ? null : active.map( ( key ) => {
+			return <div key={ key } className={ "view-selector " + ( view === key ? "active" : "" ) } onClick={ ( e ) => { onViewChange( key ) } }> { buttonText[key] } </div>
 		} );
 
 		return (

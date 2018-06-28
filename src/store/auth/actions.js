@@ -3,7 +3,7 @@ import { FETCH_TOKEN_REQUEST, FETCH_TOKEN_SUCCESS, FETCH_TOKEN_ERROR } from './a
 
 function fetchTokenRequest() {
 	return {
-		type: FETCH_TOKEN_REQUEST
+		"type": FETCH_TOKEN_REQUEST
 	};
 }
 

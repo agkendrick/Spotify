@@ -24,49 +24,24 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_ARTIST_REQUEST:
 			return {...state, "loading": true};
 		case FETCH_ARTIST_SUCCESS:
-			return {...state, "loading": false, "info": extractArtistInfo( action.payload ) };
+			const { spotifyInfo: { id, name, followers: { total: followers }, images: [img] }, bio:{ content:bio } } = action.payload;
+			return {...state, "loading": false, "info": { id, name, followers, "img": img.url, bio }};
 		case FETCH_ARTIST_ERROR: 
 			return {...state, "loading": false, "error": action.payload };
 		case CHANGE_ARTIST_VIEW:
-			return { ...state, "view": action.view };
+			return {...state, "view": action.view};
 		case FETCH_RELATED_ARTISTS_REQUEST:
-			return {...state, "related": { "loading": true } };
+			return {...state, "related": { "loading": true }};
 		case FETCH_RELATED_ARTISTS_SUCCESS:
-			return {...state, "related": { "loading": false, "items": extractRelatedArtists( action.payload ) } };
+			let items = [];
+			action.payload.artists.forEach( ( item ) => {
+				const { id, images: [img], name } = item;
+				items.push({id, img: img.url, name});
+			});
+			return {...state, "related": { "loading": false, "items": items}};
 		case FETCH_RELATED_ARTISTS_ERROR: 
-			return {...state, "related": { "loading": false, "error": action.payload, "items": null } };
+			return {...state, "related": { "loading": false, "error": action.payload, "items": null}};
 		default:
 			return state;
 	}
-}
-
-
-function extractArtistInfo( data ) {
-
-	const extractedInfo = {
-		"id": data.spotifyInfo.id,
-		"name": data.spotifyInfo.name,
-		"bio": data.bio.content,
-		"followers": data.spotifyInfo.followers.total,
-		"img": data.spotifyInfo.images[0].url
-	};
-
-	return extractedInfo;
-}
-
-function extractRelatedArtists( response ) {
-	const items = response.artists;
-	const extracted = [];
-
-	items.forEach( function( item ) {
-		const release = {
-			"id": item.id,
-			"img": item.images[0].url,
-			"name": item.name
-		};
-
-		extracted.push( release );
-	} );
-
-	return extracted;
 }

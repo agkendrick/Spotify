@@ -8,8 +8,8 @@ export function searchArtist( artistName, token ) {
 		"headers": {
 			"Authorization": "Bearer " + token
 		},
-		json: true,
-		qs: {
+		"json": true,
+		"qs": {
 			"type": "artist",
 			"q": decodeURIComponent( artistName )
 		}

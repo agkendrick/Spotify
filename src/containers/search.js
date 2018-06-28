@@ -18,8 +18,11 @@ class Search extends Component {
 	}
 
 	onTextChange( event ) {
+
+		const { searchArtist, clearSearchResults, changeView } = this.props;
+
 		let val = event.target.value;
-		let search = this.props.searchArtist;
+		let search = searchArtist;
 
 		this.changeView( "artist-results" );
 
@@ -30,8 +33,8 @@ class Search extends Component {
 		} else {
 
 			if ( event.target.value.length === 0 ) {
-				this.props.clearSearchResults();
-				this.props.changeView( "history" );
+				clearSearchResults();
+				changeView( "history" );
 				return;
 			}
 			event.target.dataset.timer = setTimeout( () => { search( val ); }, 500 );
@@ -39,12 +42,15 @@ class Search extends Component {
 	}
 
 	onItemSelect( id, name, type ) {
+		
+		const { addToHistory, fetchArtist, viewChange } = this.props;
+
 		if( type === "artist" ) {
-			this.props.fetchArtist( id );
+			fetchArtist( id );
 		}
 
-		this.props.addToHistory( { "name": name, "id": id, "type": type } );
-		this.props.viewChange( type );
+		addToHistory( { "name": name, "id": id, "type": type } );
+		viewChange( type );
 	}
 
 	changeView( view ) {
@@ -52,10 +58,12 @@ class Search extends Component {
 	}
 
 	render() {
-		const anyResults = this.props.results === null ? 0 : this.props.results.length;
+
+		const { results, history, view } = this.props;
+		const anyResults = results === null ? 0 : results.length;
 		const views = {
-			"artist-results": <ArtistResults results={ this.props.results } onClick={ this.onItemSelect } />, 
-			"history": <SearchHistory history={ this.props.history } onClick={ this.onItemSelect } />
+			"artist-results": <ArtistResults results={ results } onClick={ this.onItemSelect } />, 
+			"history": <SearchHistory history={ history } onClick={ this.onItemSelect } />
 		};
 
 		const active = anyResults ? [ "history", "artist-results"] : [ "history" ];
@@ -63,7 +71,7 @@ class Search extends Component {
 		return (
 			<div id="search-view">
 				<SearchBar onKeyUp={ this.onTextChange } />
-				<View view={ this.props.view } views={ views } active={ active } onViewChange={ this.changeView } />
+				<View view={ view } views={ views } active={ active } onViewChange={ this.changeView } />
 			</div>
 		);
 	}
@@ -71,11 +79,13 @@ class Search extends Component {
 }
 
 function mapStateToProps( state ) {
+	const { search: { results, loading, history, view }} = state;
+
 	return {
-		"results": state.search.results,
-		"loading": state.search.loading,
-		"history": state.search.history,
-		"view": state.search.view
+		results,
+		loading,
+		history,
+		view
 	};
 }
 

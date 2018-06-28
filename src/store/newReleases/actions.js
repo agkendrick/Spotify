@@ -3,21 +3,21 @@ import { queryNewReleases } from '../../services/spotify/newReleases';
 
 function fetchNewReleasesRequest() {
 	return {
-		type: FETCH_NEW_RELEASES_REQUEST
+		"type": FETCH_NEW_RELEASES_REQUEST
 	};
 }
 
 function fetchNewReleasesSuccess( response ) {
 	return {
-		type: FETCH_NEW_RELEASES_SUCCESS,
-		items: response
+		"type": FETCH_NEW_RELEASES_SUCCESS,
+		"items": response
 	};
 }
 
 function fetchNewReleasesError( error ) {
 	return {
-		type: FETCH_NEW_RELEASES_ERROR,
-		payload: error
+		"type": FETCH_NEW_RELEASES_ERROR,
+		"payload": error
 	};
 }
 

@@ -3,42 +3,41 @@ import * as searchService from '../../services/spotify/search';
 
 function searchArtistRequest() {
 	return {
-		type: SEARCH_ARTIST_REQUEST
+		"type": SEARCH_ARTIST_REQUEST
 	};
 }
 
 function searchArtistSuccess( searchResults ) {
 	return {
-		type: SEARCH_ARTIST_SUCCESS,
-		payload: searchResults
+		"type": SEARCH_ARTIST_SUCCESS,
+		"payload": searchResults
 	};
 }
 
-// eslint-disable-next-line
 function searchArtistError( error ) {
 	return {
-		type: SEARCH_ARTIST_ERROR,
-		payload: error
+		"type": SEARCH_ARTIST_ERROR,
+		"payload": error
 	};
 }
 
 export function addToHistory( artistInfo ) {
 	return {
-		type: ADD_TO_HISTORY,
-		payload: artistInfo
+		"type": ADD_TO_HISTORY,
+		"payload": artistInfo
 	}
 }
 
 export function changeView( view ) {
 	return {
-		type: CHANGE_SEARCH_VIEW,
-		payload: view
+		"type": CHANGE_SEARCH_VIEW,
+		"payload": view
 	}
 }
 
 export function clearSearchResults() {
 	return {
-		type: CLEAR_SEARCH_RESULTS
+		"type": CLEAR_SEARCH_RESULTS
 	}
 }
 

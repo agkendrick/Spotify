@@ -11,30 +11,15 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_NEW_RELEASES_REQUEST:
 			return {...state, "loading": true};
 		case FETCH_NEW_RELEASES_SUCCESS:
-			return {...state, "loading": false, "items": extractNewReleases( action.items ) };
+			const items = [];			
+			action.items.albums.items.forEach( ( item ) => {
+				const { artists: [artist], name, images: [img] } = item;
+				items.push( { "id": artist.id, "img": img.url, "name": { "artist": artist.name, "album": name }} );
+			});
+			return {...state, "loading": false, "items": items };
 		case FETCH_NEW_RELEASES_ERROR: 
 			return {...state, "error": action.payload };
 		default:
 			return state;
 	}
-}
-
-function extractNewReleases( response ) {
-	const items = response.albums.items;
-	const extracted = [];
-
-	items.forEach( function( item ) {
-		const release = {
-			"id": item.artists[0].id,
-			"img": item.images[0].url,
-			"name": {
-				"artist": item.artists[0].name,
-				"album": item.name
-			}
-		};
-
-		extracted.push( release );
-	} );
-
-	return extracted;
 }

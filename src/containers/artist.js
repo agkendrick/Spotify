@@ -13,12 +13,15 @@ class Artist extends Component {
 	}
 
 	onItemSelect( id, name, type ) {
+
+		const { getArtistDetails, changeView, setView } = this.props;
+
 		if ( type === "artist" ) {
-			this.props.getArtistDetails( id );
+			getArtistDetails( id );
 		}
 		
-		this.props.changeView( "about" );
-		this.props.setView( type );
+		changeView( "about" );
+		setView( type );
 	}
 
 	componentWillUnmount() {
@@ -28,36 +31,43 @@ class Artist extends Component {
 
 	render() {
 
-		document.getElementById("bg").style.backgroundImage = "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + this.props.img + ")";
+		const { id, img, bio, name, view, followers, fetchRelatedArtists, related, changeView } = this.props;
+
+		document.getElementById("bg").style.backgroundImage = "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + img + ")";
 		document.getElementById("sidebar").style.backgroundColor = "rgba(0,0,0,.5)";
 		
 		const views = {
-			"about": <About bio={ this.props.bio } />,
-			"related": <RelatedArtists related={this.props.related.items } loading={ this.props.related.loading } fetch={ this.props.fetchRelatedArtists } id={ this.props.id } onClick={ this.onItemSelect } />
+			"about": <About bio={ bio } />,
+			"related": <RelatedArtists related={related.items } loading={ related.loading } fetch={ fetchRelatedArtists } id={ id } onClick={ this.onItemSelect } />
 		};
 		const active = Object.keys( views );
 
 		return (
 			<div id="artist-view">
-				<h4>{ Number(this.props.followers).toLocaleString() } MONTHLY LISTENERS</h4>
-				<h1>{ this.props.name }</h1>
-				<View view={ this.props.view } views={ views } active={ active } onViewChange={ this.props.changeView } />
+				<h4>{ Number(followers).toLocaleString() } MONTHLY LISTENERS</h4>
+				<h1>{ name }</h1>
+				<View view={ view } views={ views } active={ active } onViewChange={ changeView } />
 			</div>
 		);
 	}
 }
 
 function mapStateToProps( state ) {
+	
+	const { artist: { loading, view, related, info: { bio, name, followers, img, id} }} = state;
+
 	return {
-		"loading": state.artist.loading,
-		"view": state.artist.view,
-		"bio": state.artist.info.bio,
-		"related": state.artist.related,
-		"name": state.artist.info.name,
-		"followers": state.artist.info.followers,
-		"img": state.artist.info.img,
-		"id": state.artist.info.id
+		loading,
+		view,
+		related,
+		bio: bio,
+		name: name,
+		followers: followers,
+		img: img,
+		id: id
 	};
+
+
 }
 
 function mapDispatchToProps( dispatch ) {

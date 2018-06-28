@@ -8,7 +8,7 @@ export function getArtist( id, token ) {
 		"headers": {
 			"Authorization": "Bearer " + token
 		},
-		json: true
+		"json": true
 	};
 
     return request(config)
@@ -35,21 +35,21 @@ export function getRelatedArtists( id, token ) {
 		"headers": {
 			"Authorization": "Bearer " + token
 		},
-		json: true
+		"json": true
 	};
 
     return request(config)
 		   .then( ( body ) => {
-				return {
-					"success": true, 
-					"body": body
-				};
+					return {
+						"success": true, 
+						"body": body
+					};
 		    })
 		    .catch( ( error ) => {
-				return {
-					"success": false,
-					"message": error.error.error.message
-				}
+					return {
+						"success": false,
+						"message": error.error.error.message
+					}
 		    });
 
 }

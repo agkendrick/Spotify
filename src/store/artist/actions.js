@@ -6,7 +6,7 @@ import { FETCH_ARTIST_REQUEST, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR, CHANGE_
 
 function fetchArtistRequest() {
 	return {
-		type: FETCH_ARTIST_REQUEST
+		"type": FETCH_ARTIST_REQUEST
 	};
 }
 
@@ -26,21 +26,21 @@ function fetchArtistError( error ) {
 
 function fetchRelatedArtistsRequest() {
 	return {
-		type: FETCH_RELATED_ARTISTS_REQUEST
+		"type": FETCH_RELATED_ARTISTS_REQUEST
 	};
 }
 
 function fetchRelatedArtistsSuccess( relatedArtistsInfo ) {
 	return {
-		type: FETCH_RELATED_ARTISTS_SUCCESS,
-		payload: relatedArtistsInfo 
+		"type": FETCH_RELATED_ARTISTS_SUCCESS,
+		"payload": relatedArtistsInfo 
 	};
 }
 
 function fetchRelatedArtistsError( error ) {
 	return {
-		type: FETCH_RELATED_ARTISTS_ERROR,
-		payload: error
+		"type": FETCH_RELATED_ARTISTS_ERROR,
+		"payload": error
 	};
 }
 

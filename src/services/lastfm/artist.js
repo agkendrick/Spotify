@@ -5,8 +5,8 @@ export function getArtist( name ) {
 	const config = {
 		"url": "https://ws.audioscrobbler.com/2.0/",
 		"method": "GET",
-		json: true,
-		qs: {
+		"json": true,
+		"qs": {
 			"artist": name,
 			"api_key": "41134702145d5a6b9a3f7b2818f651cc",
 			"method": "artist.getinfo",

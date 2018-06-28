@@ -16,31 +16,39 @@ class Home extends Component {
 	}
 
 	onItemSelect( id, name, type ) {
+
+		const { getArtistDetails, setView } = this.props;
+
 		if ( type === "artist" || "album" ) {
-			this.props.getArtistDetails( id );
+			getArtistDetails( id );
 		}
-		this.props.setView( "artist" );
+		setView( "artist" );
 	}
 
 	render() {
 
+		const { newReleases, view, changeView } = this.props;
+
 		const views = {
-			"new-releases": <NewReleases data={ this.props.newReleases } onClick={ this.onItemSelect } />
+			"new-releases": <NewReleases data={ newReleases } onClick={ this.onItemSelect } />
 		};
 		const active = Object.keys( views );
 
 		return (
 			<div id="home-view">
-				<View view={ this.props.view } views={ views } active={ active } onViewChange={ this.props.changeView } />		
+				<View view={ view } views={ views } active={ active } onViewChange={ changeView } />		
 			</div>
 		);
 	}
 }
 
 function mapStateToProps( state ) {
+
+	const { newReleases: {items: newReleases}, home: { view }} = state;
+	
 	return {
-		"newReleases": state.newReleases.items,
-		"view": state.home.view
+		newReleases,
+		view
 	};
 }
 

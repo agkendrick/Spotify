@@ -25,13 +25,14 @@ export default class App extends Component {
 
 	render() {
 
+		const { view: v } = this.state;
 		const views = { 
 			"home": <Home setView={ this.setView } />, 
 			"artist": <Artist setView={ this.setView } />,
 			"search": <Search viewChange={ this.setView } /> 
 		};
 
-		const view = views[this.state.view];
+		const view = views[v];
 
 		return (
 			<div id="bg">

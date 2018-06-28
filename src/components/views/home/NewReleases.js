@@ -8,11 +8,12 @@ export default class NewReleases extends Component {
 
 	render() {
 
-		const onClick = this.props.onClick;
-		const items = this.props.data === null ? null : this.props.data.map( ( info ) => 
+		const { onClick, data } = this.props;
+		const items = data === null ? null : data.map( ( info ) => 
 		{
-			const names = [info.name.artist, info.name.album];
-			return <Tile key={ info.id } type={ "album" } id={ info.id } name={ names } img={ info.img } onClick={ onClick } />
+			const { name, id, img } = info;
+			const names = [name.artist, name.album];
+			return <Tile key={ id } type={ "album" } id={ id } name={ names } img={ img } onClick={ onClick } />
 		});
 		
 		return (

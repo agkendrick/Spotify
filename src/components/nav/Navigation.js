@@ -6,6 +6,9 @@ export default class Navigation extends Component {
 	}
 
 	render() {
+
+		const { setView } = this.props;
+
 		return (
 	        <nav id="sidebar" className="active">
 
@@ -18,8 +21,8 @@ export default class Navigation extends Component {
 	            </div>
 
 	            <ul className="list-unstyled components">
-	                <li onClick={ ( e ) => { this.props.setView( "home" ) } } className="active link"><i className="fa fa-home"/>Home</li>
-	                <li onClick={ ( e ) => { this.props.setView( "search" ) } } className="link"><i className="fa fa-search"/>Search</li>
+	                <li onClick={ ( e ) => { setView( "home" ) } } className="active link"><i className="fa fa-home"/>Home</li>
+	                <li onClick={ ( e ) => { setView( "search" ) } } className="link"><i className="fa fa-search"/>Search</li>
 	            </ul>
 	        </nav>
 		);

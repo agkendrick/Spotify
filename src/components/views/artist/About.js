@@ -7,7 +7,7 @@ export default class About extends Component {
 
 	render() {
 
-		const bio = this.props.bio;
+		const { bio } = this.props;
 		
 		return (
 			<div id="bio">

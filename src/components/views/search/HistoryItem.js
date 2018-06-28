@@ -6,10 +6,13 @@ export default class HistoryItem extends Component {
 	}
 
 	render() {
+
+		const { name, type, id, onClick } = this.props;
+		
 		return (
-			<div className="history-item" onClick={ (e) => { this.props.onClick( this.props.id, this.props.name, this.props.type ) } }>
-				<h1 className="link">{ this.props.name }</h1>
-				<span>{ this.props.type }</span>
+			<div className="history-item" onClick={ (e) => { onClick( id, name, type ) } }>
+				<h1 className="link">{ name }</h1>
+				<span>{ type }</span>
 			</div>			
 		);
 	}

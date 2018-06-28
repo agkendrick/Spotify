@@ -7,17 +7,14 @@ export default class Tile extends Component {
 
 	render() {
 
-		const img = this.props.img;
-		const id = this.props.id;
-		const type = this.props.type;
-		const name = type === "album" ? this.props.name[0] : this.props.name;
-		const onClick = this.props.onClick;
+		const { img, id, type, onClick, name:itemName } = this.props;
+		const name = type === "album" ? itemName[0] : itemName;
 
 		return (
 			<div className="result link" onClick={ (e) => { onClick( id, name, type ) } }>
 				<img src={ img } alt={ name } />
 				<h5>{ name }</h5>
-				<span>{ type === "album" ? this.props.name[1] : null }</span>	
+				<span>{ type === "album" ? itemName[1] : null }</span>	
 			</div>	
 		);
 	}

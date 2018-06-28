@@ -9,9 +9,12 @@ export default class ArtistResults extends Component {
 
 	render() {
 
-		const listItems = this.props.results == null ? null : this.props.results.map( ( result ) =>
-			<Tile key={ result.id } name={ result.name } id={ result.id } img={ result.img } type={ "artist" } onClick={ this.props.onClick } />
-			);
+		const { results, onClick } = this.props;
+		
+		const listItems = results == null ? null : results.map( ( result ) => {
+			const { id, name, img } = result;
+			return <Tile key={ id } name={ name } id={ id } img={ img } type={ "artist" } onClick={ onClick } />
+		});
 
 		return (
 		<div id="artist-results">
