@@ -12,7 +12,6 @@ class Home extends Component {
 		super( props );
 		this.onItemSelect = this.onItemSelect.bind(this);
 		props.fetchNewReleases();
-		
 	}
 
 	onItemSelect( id, name, type ) {

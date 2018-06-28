@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import storePromise from './store';
 import fetchToken from './store/auth/actions';
-import $ from 'jquery';
 
 storePromise()
 	.then( store => {
@@ -18,21 +17,8 @@ storePromise()
 					<App />
 				</Provider>, 
 				document.getElementById('root'));
-			})
-			.then( () => {
-
-		          $('.list-unstyled').on('click','li', function(){
-		             $(this).addClass('active').siblings().removeClass('active');
-		          });
-
-		          $('#dismiss').on('click', function () {
-		              $('#sidebar, #content').toggleClass('active');
-		          });
-
-		          $('#sidebarCollapse').on('click', function () {
-		              $('#sidebar, #content').toggleClass('active');
-		          });
 			});
+
 	});
 	
 registerServiceWorker();

@@ -24,18 +24,15 @@ class Artist extends Component {
 		setView( type );
 	}
 
-	componentWillUnmount() {
-		document.getElementById("bg").style.backgroundImage = "none";
-		document.getElementById("sidebar").style.backgroundColor = "black";
+	componentDidUpdate() {
+		const { img, setBackground } = this.props;
+
+		setBackground( img );
 	}
 
 	render() {
 
-		const { id, img, bio, name, view, followers, fetchRelatedArtists, related, changeView } = this.props;
-
-		document.getElementById("bg").style.backgroundImage = "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + img + ")";
-		document.getElementById("sidebar").style.backgroundColor = "rgba(0,0,0,.5)";
-		
+		const { id, bio, name, view, followers, fetchRelatedArtists, related, changeView } = this.props;
 		const views = {
 			"about": <About bio={ bio } />,
 			"related": <RelatedArtists related={related.items } loading={ related.loading } fetch={ fetchRelatedArtists } id={ id } onClick={ this.onItemSelect } />
@@ -66,8 +63,6 @@ function mapStateToProps( state ) {
 		img: img,
 		id: id
 	};
-
-
 }
 
 function mapDispatchToProps( dispatch ) {

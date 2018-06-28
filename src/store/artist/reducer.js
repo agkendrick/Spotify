@@ -35,6 +35,9 @@ export default function reducer( state = initialState, action = {} ) {
 		case FETCH_RELATED_ARTISTS_SUCCESS:
 			let items = [];
 			action.payload.artists.forEach( ( item ) => {
+				if( item.images.length === 0 ) {
+					return;
+				}
 				const { id, images: [img], name } = item;
 				items.push({id, img: img.url, name});
 			});
