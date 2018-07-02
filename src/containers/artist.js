@@ -32,10 +32,10 @@ class Artist extends Component {
 
 	render() {
 
-		const { id, bio, name, view, followers, fetchRelatedArtists, related, changeView } = this.props;
+		const { id, bio, name, view, followers, fetchRelatedArtists, related: { items, loading }, changeView } = this.props;
 		const views = {
 			"about": <About bio={ bio } />,
-			"related": <RelatedArtists related={related.items } loading={ related.loading } fetch={ fetchRelatedArtists } id={ id } onClick={ this.onItemSelect } />
+			"related": <RelatedArtists related={ items } loading={ loading } fetch={ fetchRelatedArtists } id={ id } onClick={ this.onItemSelect } />
 		};
 		const active = Object.keys( views );
 

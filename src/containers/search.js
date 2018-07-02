@@ -19,25 +19,25 @@ class Search extends Component {
 
 	onTextChange( event ) {
 
+		console.log(event.target);
 		const { searchArtist, clearSearchResults, changeView } = this.props;
 
-		let val = event.target.value;
-		let search = searchArtist;
+		let { keyCode, target: { value, dataset: { timer } } } = event;
 
 		this.changeView( "artist-results" );
 
-		clearTimeout( event.target.dataset.timer );
+		clearTimeout( timer );
 
-		if( event.keyCode === 13) {
-			search( val );
+		if( keyCode === 13) {
+			searchArtist( value );
 		} else {
 
-			if ( event.target.value.length === 0 ) {
+			if ( value.length === 0 ) {
 				clearSearchResults();
 				changeView( "history" );
 				return;
 			}
-			event.target.dataset.timer = setTimeout( () => { search( val ); }, 500 );
+			timer = setTimeout( () => { searchArtist( value ); }, 500 );
 		}
 	}
 

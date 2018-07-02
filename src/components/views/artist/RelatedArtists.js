@@ -11,9 +11,10 @@ export default class RelatedArtists extends Component {
 
 		const { related, onClick } = this.props;
 		
-		const listItems = related == null ? null : related.map( ( item ) =>
-			<Tile key={ item.id } name={ item.name } id={ item.id } img={ item.img } onClick={ onClick } type={ "artist" } />
-		);
+		const listItems = related == null ? null : related.map( ( item ) => {
+			const { id, name, img } = item;
+			return <Tile key={ id } name={ name } id={ id } img={ img } onClick={ onClick } type={ "artist" } />
+		} );
 
 		return (
 			<div id="related-artists">

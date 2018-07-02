@@ -11,9 +11,8 @@ export default class NewReleases extends Component {
 		const { onClick, data } = this.props;
 		const items = data === null ? null : data.map( ( info ) => 
 		{
-			const { name, id, img } = info;
-			const names = [name.artist, name.album];
-			return <Tile key={ id } type={ "album" } id={ id } name={ names } img={ img } onClick={ onClick } />
+			const { name: { artist: artistName, album: albumName }, id, img } = info;
+			return <Tile key={ id } type={ "album" } id={ id } name={ [ artistName, albumName ] } img={ img } onClick={ onClick } />
 		});
 		
 		return (
