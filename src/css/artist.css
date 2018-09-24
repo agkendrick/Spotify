@@ -16,7 +16,7 @@
 }
 
 #artist-view h1 {
-    font-size: 70px;
+    font-size: 5vw;
     line-height: 82px;
     letter-spacing: -.005em;
     font-weight: 600;
@@ -44,10 +44,10 @@
     padding: 0px 20px;
 }
 
-#related-artists img {
+#related-artists .search-result div {
     border-radius: 50%;
 }
 
-#related-artists .result {
+#related-artists .search-result {
     margin-bottom: 40px;
 }

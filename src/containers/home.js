@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as newReleasesActions from '../store/newReleases/actions';
-import * as homeActions from '../store/home/actions';
-import * as artistActions from '../store/artist/actions';
-import NewReleases from '../components/views/home/NewReleases';
-import View from '../components/views/View';
+import { initialize, selectNewRelease, changeSubView } from '../state/home/operations';
+import NewReleases from '../components/NewReleasesView';
+import SubNav from '../components/SubNav';
 
 class Home extends Component {
-	
 	constructor( props ) {
 		super( props );
-		this.onItemSelect = this.onItemSelect.bind(this);
-		props.fetchNewReleases();
-	}
-
-	onItemSelect( id, name, type ) {
-
-		const { getArtistDetails, setView } = this.props;
-
-		if ( type === "artist" || "album" ) {
-			getArtistDetails( id );
-		}
-		setView( "artist" );
+		if(!props.newReleases)
+			props.initialize();
 	}
 
 	render() {
 
-		const { newReleases, view, changeView } = this.props;
+		const { view, newReleases, changeSubView, selectNewRelease } = this.props;
 
-		const views = {
-			"new-releases": <NewReleases data={ newReleases } onClick={ this.onItemSelect } />
+		const subViews = { 
+			"new-releases": {
+				component: <NewReleases newReleases={ newReleases } onItemSelect={ selectNewRelease } />,
+				display: "NEW RELEASES"
+			}
 		};
-		const active = Object.keys( views );
 
 		return (
 			<div id="home-view">
-				<View view={ view } views={ views } active={ active } onViewChange={ changeView } />		
+				<div className="view"> 
+					<SubNav subViews={ subViews } view={ view } changeView={ changeSubView } />
+					{ subViews[view].component }
+				</div>		
 			</div>
 		);
 	}
@@ -53,9 +45,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
 	return {
-		"getArtistDetails": ( id ) => dispatch( artistActions.fetchArtist( id ) ),
-		"fetchNewReleases": () => dispatch( newReleasesActions.fetchNewReleases() ),
-		"changeView": ( view ) => dispatch( homeActions.changeView( view ) )
+		"initialize": () => dispatch( initialize() ),
+		"selectNewRelease": ( artistId ) => dispatch( selectNewRelease( artistId ) ),
+		"changeSubView": ( view ) => dispatch( changeSubView( view ) )
 	};
 }
 

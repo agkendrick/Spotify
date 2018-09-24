@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as searchActions from '../store/search/actions';
-import * as artistActions from '../store/artist/actions';
-import View from '../components/views/View';
-import SearchBar from '../components/views/search/SearchBar';
-import ArtistResults from '../components/views/search/ArtistResults';
-import SearchHistory from '../components/views/search/SearchHistory';
+import { clearSearchResults, addToHistory, changeSubView } from '../state/search/actions';
+import { searchArtist } from '../state/search/operations';
+import { fetchArtist } from '../state/artist/operations';
+import SearchBar from '../components/SearchBar';
+import SearchResults from '../components/SearchResultsView';
+import SearchHistory from '../components/SearchHistoryView';
+import SubNav from '../components/SubNav';
 
 class Search extends Component {
 	constructor( props ) {
 		super( props );
 		this.onItemSelect = this.onItemSelect.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
-		this.changeView = this.changeView.bind(this);
 		props.clearSearchResults();
-		this.changeView( "history" );
+		if( props.view !== "history" ){
+			props.changeSubView( "history" );
+		}
 	}
 
 	onTextChange( event ) {
 
-		console.log(event.target);
-		const { searchArtist, clearSearchResults, changeView } = this.props;
+		const { searchArtist, clearSearchResults, changeSubView } = this.props;
 
 		let { keyCode, target: { value, dataset: { timer } } } = event;
 
-		this.changeView( "artist-results" );
+		changeSubView( "results" );
 
 		clearTimeout( timer );
 
@@ -34,44 +35,49 @@ class Search extends Component {
 
 			if ( value.length === 0 ) {
 				clearSearchResults();
-				changeView( "history" );
+				changeSubView( "history" );
 				return;
 			}
 			timer = setTimeout( () => { searchArtist( value ); }, 500 );
 		}
 	}
 
-	onItemSelect( id, name, type ) {
+	onItemSelect( id, name, type, history ) {
 		
-		const { addToHistory, fetchArtist, viewChange } = this.props;
+		const { addToHistory, fetchArtist, changeSubView } = this.props;
 
 		if( type === "artist" ) {
 			fetchArtist( id );
 		}
+		if( history ) {
+			addToHistory( { "name": name, "id": id, "type": type } );
+		}
+		changeSubView("history");
 
-		addToHistory( { "name": name, "id": id, "type": type } );
-		viewChange( type );
 	}
-
-	changeView( view ) {
-		this.props.changeView( view );
-	}
-
+	
 	render() {
 
-		const { results, history, view } = this.props;
-		const anyResults = results === null ? 0 : results.length;
-		const views = {
-			"artist-results": <ArtistResults results={ results } onClick={ this.onItemSelect } />, 
-			"history": <SearchHistory history={ history } onClick={ this.onItemSelect } />
+		const { view, results, history, changeSubView } = this.props;
+		
+		const subViews = { 
+			"results": {
+				component: <SearchResults results={ results } onClick={ this.onItemSelect } />,
+				display: "RESULTS"
+			},
+			"history": {
+				component: <SearchHistory history={ history } onClick={ this.onItemSelect } />,
+				display: "HISTORY"
+			}
 		};
-
-		const active = anyResults ? [ "history", "artist-results"] : [ "history" ];
 
 		return (
 			<div id="search-view">
 				<SearchBar onKeyUp={ this.onTextChange } />
-				<View view={ view } views={ views } active={ active } onViewChange={ this.changeView } />
+				<div className="view"> 
+					<SubNav	subViews={ subViews } view={ view } changeSubView={ changeSubView } />
+					{ subViews[view].component }
+				</div>
 			</div>
 		);
 	}
@@ -92,19 +98,19 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
 	return {
 		"searchArtist": text => {
-			dispatch( searchActions.searchArtist( text ) );
+			dispatch( searchArtist( text ) );
 		},
 		"fetchArtist": id => {
-			dispatch( artistActions.fetchArtist( id ) );
+			dispatch( fetchArtist( id ) );
 		},
 		"clearSearchResults": () => {
-			dispatch( searchActions.clearSearchResults() );
+			dispatch( clearSearchResults() );
 		},
 		"addToHistory": ( artistInfo ) => {
-			dispatch( searchActions.addToHistory( artistInfo ) );
+			dispatch( addToHistory( artistInfo ) );
 		},
-		"changeView": ( view ) => {
-			dispatch( searchActions.changeView( view ) );
+		"changeSubView": ( view ) => {
+			dispatch( changeSubView( view ) );
 		}
 	}
 }

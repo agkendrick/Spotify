@@ -48,11 +48,6 @@ a, a:hover, a:focus {
     visibility: visible;
 }
 
-#content img {
-    max-width: 100%;
-    height: auto;
-}
-
 .view {
     padding: 0 2em;
 }
@@ -64,12 +59,12 @@ a, a:hover, a:focus {
 
 #bg {
     background-size: cover;
-    background-position: 50%;
+    background-position: center;
     height: 100%;
     width: 100%;
 }
 
-.result {
+.search-result {
     padding: 15px;
     line-height: 20px;
     letter-spacing: .015em;
@@ -86,11 +81,13 @@ a, a:hover, a:focus {
   width: 100%;
 }
 
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
 @media (max-width: 768px) {
 
-    .result {
-      height: auto !important;
-      width: 100% !important;
-
+    #content {
+        width: 100%;
     }
 }

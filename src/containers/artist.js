@@ -1,49 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as artistActions from '../store/artist/actions';
-import View from '../components/views/View';
-import About from'../components/views/artist/About';
-import RelatedArtists from'../components/views/artist/RelatedArtists';
+import { changeSubView, selectRelatedArtist } from '../state/artist/operations';
+import About from '../components/AboutView';
+import RelatedArtists from '../components/RelatedArtistsView';
+import SubNav from '../components/SubNav';
 
 class Artist extends Component {
 	constructor( props ) {
 		super( props );
+		if (props.history.action !== 'PUSH' && !props.id ) {
+			props.history.push('/');
+		}
 		this.onItemSelect = this.onItemSelect.bind( this );
-		this.props.changeView( "about" );
+		props.changeSubView( "about" );
 	}
 
 	onItemSelect( id, name, type ) {
-
-		const { getArtistDetails, changeView, setView } = this.props;
-
-		if ( type === "artist" ) {
-			getArtistDetails( id );
-		}
-		
-		changeView( "about" );
-		setView( type );
+		this.props.selectRelatedArtist( id );
+		window.scroll(0, 0);
 	}
 
-	componentDidUpdate() {
-		const { img, setBackground } = this.props;
-
-		setBackground( img );
+	componentDidUpdate( prevProps ) {
+		const { img, setBackgroundImage } = this.props;
+		if( prevProps.img !== img ){
+			setBackgroundImage( img );
+		}
 	}
 
 	render() {
 
-		const { id, bio, name, view, followers, fetchRelatedArtists, related: { items, loading }, changeView } = this.props;
-		const views = {
-			"about": <About bio={ bio } />,
-			"related": <RelatedArtists related={ items } loading={ loading } fetch={ fetchRelatedArtists } id={ id } onClick={ this.onItemSelect } />
+		const { view, changeSubView, id, bio, name, followers, related: { items, loading } } = this.props;
+		const subViews = { 
+			"about": {
+				component: <About bio={ bio } />,
+				display: "ABOUT"
+			},
+			"related-artists": {
+				component: <RelatedArtists related={ items } onClick={ this.onItemSelect } id={ id } />,
+				display: "RELATED ARTISTS"
+			}
 		};
-		const active = Object.keys( views );
 
 		return (
 			<div id="artist-view">
 				<h4>{ Number(followers).toLocaleString() } MONTHLY LISTENERS</h4>
 				<h1>{ name }</h1>
-				<View view={ view } views={ views } active={ active } onViewChange={ changeView } />
+
+				<div className="view"> 
+					<SubNav subViews={ subViews } view={ view } changeSubView={ changeSubView } />
+					{ loading ? null : subViews[view].component }
+				</div>
 			</div>
 		);
 	}
@@ -67,9 +73,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
 	return {
-		"getArtistDetails": ( id ) => dispatch( artistActions.fetchArtist( id ) ),
-		"changeView": ( view ) => dispatch( artistActions.changeView( view ) ),
-		"fetchRelatedArtists": ( id ) => dispatch( artistActions.fetchRelatedArtists( id ) )
+		"changeSubView": ( view ) => dispatch( changeSubView( view ) ),
+		"selectRelatedArtist": ( artistId ) => dispatch( selectRelatedArtist( artistId ))
 	};
 }
 

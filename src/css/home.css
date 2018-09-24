@@ -9,11 +9,11 @@
     font-weight: 600;
 }
 
-#new-releases .result {
+#new-releases .search-result {
 	color: white;
 }
 
-#new-releases .result span {
+#new-releases .search-result span {
 	display: block;
 }
 

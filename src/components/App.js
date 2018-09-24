@@ -1,62 +1,58 @@
 import React, { Component } from 'react';
-import Navigation from './nav/Navigation';
-import CollapseButton from './nav/CollapseButton';
-import Search from '../containers/search';
-import Home from '../containers/home';
-import Artist from '../containers/artist';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import SideBar from './SideBar';
+import CollapseButton from './CollapseButton';
+import Routes from '../routes';
 
 export default class App extends Component {
 	constructor( props ) {
 		super( props );
-		this.setView = this.setView.bind(this);
-		this.setBackground = this.setBackground.bind(this);
-		this.toggleNav = this.toggleNav.bind(this);
+		this.setBackgroundImage = this.setBackgroundImage.bind(this);
+		this.toggleSideBar = this.toggleSideBar.bind(this);
 		this.bg = React.createRef();
-		this.state = { "view": "home", "navActive": true, "background": null };
+		this.state = { "showSideBar": true, "backgroundImage": null };
 	}
 
-	setView( view ) {
-		const newState = { "view": view };
-
-		var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
-		if ( w < 768 && this.state.navActive ) 
-		{
-			newState.navActive = false; 
-		}
-
-		this.setState( ( prevState ) => { return newState } );
-	}
-
-	setBackground( url ) {
+	setBackgroundImage( url ) {
 		this.setState( ( prevState ) => {
-			return { "background": url };
+			return { "backgroundImage": url };
 		} ); 
 	}
 
-	toggleNav( active ) {
-		this.setState( ( prevState ) => { return { "navActive": active } } );
+	toggleSideBar( active ) {
+		this.setState( ( prevState ) => { return { "showSideBar": active } } );
 	}
 
 	render() {
 		
-		const { view, navActive, background } = this.state;
-		const views = { 
-			"home": <Home setView={ this.setView } />, 
-			"artist": <Artist setBackground={ this.setBackground } setView={ this.setView } />,
-			"search": <Search viewChange={ this.setView } /> 
+		const { showSideBar, backgroundImage } = this.state;
+		const bg = window.location.pathname === "/artist" ? "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + backgroundImage + ")" : "none";
+		const routeConfig = {
+			"/artist": {
+				setBackgroundImage: this.setBackgroundImage
+			} 
 		};
-
-		const bg = view === "artist" ? "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + background + ")" : "none";
 
 		return (
 			<div ref={ this.bg } id="bg" style={ {backgroundImage: bg} }>
 				
-				<Navigation artistLoaded={ background } view={ view } isNavActive={ navActive } toggle={ this.toggleNav } setView={ this.setView } />
+				<SideBar showArtistLink={ backgroundImage } visible={ showSideBar } toggle={ this.toggleSideBar } />
 
-				<div id="content" className={ navActive ? "" : "active" }>
-					<CollapseButton toggle={ this.toggleNav } />
-		        	{ views[view] } 
+				<div id="content" className={ showSideBar ? "" : "active" }>
+					<CollapseButton toggle={ this.toggleSideBar } />
+					<Switch>
+						{
+							Routes.map((route, index) => (
+								<Route
+									exact={ route.exact }
+									key={ index }
+									path={ route.path }
+									render={ ( props ) => <route.component { ...props } { ...routeConfig[route.path] } /> } 
+								/>
+									))
+						}
+						<Route render={ ( props ) => <Redirect to={{ pathname: "/" }} />} />
+					</Switch>
 		        </div>
 
 		        <div className="overlay" />

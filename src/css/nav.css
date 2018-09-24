@@ -55,10 +55,6 @@
     color: #fff;
 }
 
-#sidebar ul li.active {
-    color: #7386D5;
-}
-
 #sidebar ul li i {
     margin-right: 3%;
 }
@@ -135,7 +131,7 @@
     border: none;
 }
 
-.view-selector {
+.sub-nav {
     display: inline-block;
     padding: 10px;
     margin: 20px 10px;
@@ -145,16 +141,16 @@
     transition: all 0.3s;
 }
 
-.view-selector.active {
+.sub-nav.active {
     color: white;
 }
 
-.view-selector:hover {
+.sub-nav:hover {
     color: white;
     cursor: pointer;
 }
 
-.view-selector.active:after {
+.sub-nav.active:after {
     content: ""; /* This is necessary for the pseudo element to work. */ 
     display: block; /* This will put the pseudo element on its own line. */
     margin: 0 auto; /* This will center the border. */

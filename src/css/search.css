@@ -26,15 +26,15 @@
     caret-color: #7386D5;
 }
 
-#artist-results .result img {
+#search-results .search-result div {
     border-radius: 50%;
 }
 
-#artist-results .result {
+#search-results .search-result {
     margin-bottom: 40px;
 }
 
-#artist-results h5 {
+#search-results h5 {
     color: white;
 }
 
@@ -67,4 +67,23 @@
 
 .history-item h1:hover {
     color: white;
+}
+
+.search-result div:first-child {
+    height: 80%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+@media (max-width: 768px) {
+    
+    .search-result {
+        width: 100% !important;
+    }
+    
+    .search-result div:first-child {
+        margin: 0 auto;
+    }
 }
