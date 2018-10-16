@@ -1,19 +1,30 @@
-import Search from '../containers/search';
-import Home from '../containers/home';
-import Artist from '../containers/artist';
+import React from 'react';
+import Loadable from 'react-loadable';
 
 const routes = [{
         path: "/",
-        component: Home,
+        component: Loadable({
+            loader: () => import('../containers/home'),
+            loading: () => <div>Loading...</div>,
+            render: ( Component, props ) => <Component.default { ...props } />
+        }),
         exact: true
     },
     {
         path: "/artist",
-        component: Artist
+        component: Loadable({
+            loader: () => import('../containers/artist'),
+            loading: () => <div>Loading...</div>,
+            render: ( Component, props ) => <Component.default { ...props } />
+        })
     },
     {
         path: "/search",
-        component: Search
+        component: Loadable({
+            loader: () => import('../containers/search'),
+            loading: () => <div>Loading...</div>,
+            render: ( Component, props ) => <Component.default { ...props } />
+        })
     }
 ];
 
