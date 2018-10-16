@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResultsView';
 import SearchHistory from '../components/SearchHistoryView';
 import SubNav from '../components/SubNav';
+import SubViewWrapper from '../components/SubViewWrapper'
 
 class Search extends Component {
 	constructor( props ) {
@@ -72,12 +73,12 @@ class Search extends Component {
 		};
 
 		return (
-			<div id="search-view">
+			<div>
 				<SearchBar onKeyUp={ this.onTextChange } />
-				<div className="view"> 
+				<SubViewWrapper> 
 					<SubNav	subViews={ subViews } view={ view } changeSubView={ changeSubView } />
 					{ subViews[view].component }
-				</div>
+				</SubViewWrapper>
 			</div>
 		);
 	}

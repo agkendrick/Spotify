@@ -12,11 +12,18 @@ export default class RelatedArtists extends Component {
 		
 		const listItems = related == null ? null : related.map( ( item ) => {
 			const { id, name, img } = item;
-			return <SearchResult key={ id } name={ name } id={ id } img={ img } onClick={ () => onClick(id, name, "artist") } type={ "artist" } />
+			return <SearchResult 
+					key={ id } 
+					name={ name } 
+					id={ id } 
+					img={ img } 
+					onClick={ () => onClick(id, name, "artist") } 
+					type={ "artist" }
+					view={ "relatedArtists" } />
 		} );
 
 		return (
-			<div id="related-artists">
+			<div>
 				{ listItems }
 			</div>
 		);

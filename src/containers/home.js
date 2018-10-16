@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { initialize, selectNewRelease, changeSubView } from '../state/home/operations';
 import NewReleases from '../components/NewReleasesView';
 import SubNav from '../components/SubNav';
+import SubViewWrapper from '../components/SubViewWrapper';
 
 class Home extends Component {
 	constructor( props ) {
@@ -23,12 +24,12 @@ class Home extends Component {
 		};
 
 		return (
-			<div id="home-view">
-				<div className="view"> 
+			<div>
+				<SubViewWrapper> 
 					<SubNav subViews={ subViews } view={ view } changeView={ changeSubView } />
 					{ subViews[view].component }
-				</div>		
-			</div>
+				</SubViewWrapper>
+			</div>		
 		);
 	}
 }

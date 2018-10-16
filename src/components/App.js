@@ -3,6 +3,28 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import SideBar from './SideBar';
 import CollapseButton from './CollapseButton';
 import Routes from '../routes';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+	background-image: ${props => props.bg ? `linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url( ${ props.bg } )` : `none` }
+`;
+
+const Content = styled.div`
+	width: calc(100% - 220px);
+	min-height: 100vh;
+	transition: all 0.3s;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	@media(max-width: 768px) {
+		width: 100%;
+	}
+`;
 
 export default class App extends Component {
 	constructor( props ) {
@@ -26,7 +48,6 @@ export default class App extends Component {
 	render() {
 		
 		const { showSideBar, backgroundImage } = this.state;
-		const bg = window.location.pathname === "/artist" ? "linear-gradient(180deg, rgba(0,0,0,.2) 10%, rgba(15,15,15,1) 60%), url(" + backgroundImage + ")" : "none";
 		const routeConfig = {
 			"/artist": {
 				setBackgroundImage: this.setBackgroundImage
@@ -34,12 +55,12 @@ export default class App extends Component {
 		};
 
 		return (
-			<div ref={ this.bg } id="bg" style={ {backgroundImage: bg} }>
-				
+			<Wrapper ref={ this.bg } bg={ window.location.pathname === "/artist" ? backgroundImage : null }>
+
 				<SideBar showArtistLink={ backgroundImage } visible={ showSideBar } toggle={ this.toggleSideBar } />
 
-				<div id="content" className={ showSideBar ? "" : "active" }>
-					<CollapseButton toggle={ this.toggleSideBar } />
+				<Content fullScreen={ showSideBar }>
+					<CollapseButton toggle={ this.toggleSideBar } show={ !showSideBar } />
 					<Switch>
 						{
 							Routes.map((route, index) => (
@@ -53,10 +74,9 @@ export default class App extends Component {
 						}
 						<Route render={ ( props ) => <Redirect to={{ pathname: "/" }} />} />
 					</Switch>
-		        </div>
-
-		        <div className="overlay" />
-	    	</div>
+		        </Content>
+				
+	    	</Wrapper>
 		)
 	}
 }
